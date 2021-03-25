@@ -1,0 +1,215 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-menu-toggle slot="start">
+      <ion-icon
+        name="menu-outline"
+        style="font-size: 170%; font-weight: bold; margin-left: 11%"
+      ></ion-icon>
+    </ion-menu-toggle>
+    <ion-title style="font-size: 100%; font-family: revert"
+      ><ion-img src="assets/logo.png" alt="Freshofast" style="width: 59%">
+      </ion-img
+    ></ion-title>
+    <!-- <ion-buttons slot="end" style="margin-right: 2%">
+      <ion-icon slot="end" name="search-outline"></ion-icon>
+    </ion-buttons> -->
+    <!-- <ion-buttons
+      slot="end"
+      style="margin-right: 4%"
+      [routerLink]="['/checkout-page']"
+    >
+      <ion-icon name="cart-outline" style="font-size: 144%"></ion-icon>
+      <span>{{cartlist.length}}</span>
+    </ion-buttons> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="profiledata">
+  <ion-card
+    ><ion-card-header
+      style="text-align: center; font-weight: 700; font-size: 2em"
+    >
+      Billing Details </ion-card-header
+    ><ion-card-content
+      ><ion-item
+        ><ion-label>First Name:-</ion-label
+        ><ion-input type="text" [(ngModel)]="user_name"></ion-input
+      ></ion-item>
+
+      <ion-item
+        ><ion-label>Last Name:-</ion-label
+        ><ion-input type="text" [(ngModel)]="last_name"></ion-input
+      ></ion-item>
+
+      <ion-item
+        ><ion-label>Email:-</ion-label
+        ><ion-input type="text" [(ngModel)]="mail"></ion-input
+      ></ion-item>
+
+      <ion-item
+        ><ion-label>Phone number:-</ion-label
+        ><ion-input type="text" [(ngModel)]="phone"></ion-input
+      ></ion-item>
+
+      <ion-item
+        ><ion-label>Address:-</ion-label
+        ><ion-input type="text" [(ngModel)]="address_1"></ion-input
+      ></ion-item>
+
+      <ion-item
+        ><ion-label>City:-</ion-label
+        ><ion-input type="text" [(ngModel)]="city"></ion-input
+      ></ion-item>
+
+      <ion-item
+        ><ion-label>State:-</ion-label
+        ><ion-input type="text" [(ngModel)]="state"> </ion-input
+      ></ion-item>
+
+      <ion-item
+        ><ion-label>Postcode:-</ion-label
+        ><ion-input type="text" [(ngModel)]="postcode"></ion-input
+      ></ion-item>
+
+      <!--<ion-item
+         <ion-button
+          style="
+            background-color: #60be74;
+            width: 70%;
+            height: 70%;
+            border-radius: 7px;
+            font-size: 1em;
+            font-weight: 700;
+          "
+          (click)="updateprofile()"
+        >
+          Update Profile</ion-button
+        ></ion-item> --></ion-card-content
+    ></ion-card
+  >
+  <ion-card
+    ><ion-card-header
+      style="text-align: center; font-weight: 700; font-size: 2em"
+    >
+      Shipping Address </ion-card-header
+    ><ion-card-content
+      ><ion-item
+        ><ion-label>First Name:-</ion-label
+        ><ion-input type="text" [(ngModel)]="shipping_first_name"></ion-input
+      ></ion-item>
+
+      <ion-item
+        ><ion-label>Last Name:-</ion-label
+        ><ion-input type="text" [(ngModel)]="shipping_last_name"></ion-input
+      ></ion-item>
+
+      <ion-item
+        ><ion-label>Email:-</ion-label
+        ><ion-input type="text" [(ngModel)]="mail"></ion-input
+      ></ion-item>
+
+      <ion-item
+        ><ion-label>Phone number:-</ion-label
+        ><ion-input type="text" [(ngModel)]="phone"></ion-input
+      ></ion-item>
+
+      <ion-item
+        ><ion-label>Address:-</ion-label
+        ><ion-input type="text" [(ngModel)]="shipping_address_1"></ion-input
+      ></ion-item>
+
+      <ion-item
+        ><ion-label>City:-</ion-label
+        ><ion-input type="text" [(ngModel)]="shipping_city"></ion-input
+      ></ion-item>
+
+      <ion-item
+        ><ion-label>State:-</ion-label
+        ><ion-input type="text" [(ngModel)]="shipping_state"> </ion-input
+      ></ion-item>
+
+      <ion-item
+        ><ion-label>Postcode:-</ion-label
+        ><ion-input type="text" [(ngModel)]="shipping_postcode"></ion-input
+      ></ion-item>
+
+      <!--<ion-item
+       <ion-button
+        style="
+          background-color: #60be74;
+          width: 70%;
+          height: 70%;
+          border-radius: 7px;
+          font-size: 1em;
+          font-weight: 700;
+        "
+        (click)="updateprofile()"
+      >
+        Update Profile</ion-button
+      ></ion-item> --></ion-card-content
+    ></ion-card
+  >
+  <ion-card
+    ><ion-card-header
+      style="text-align: center; font-weight: 700; font-size: 2em"
+    >
+      Payment </ion-card-header
+    ><ion-card-content
+      ><ion-label>Payment Method</ion-label>
+      <ion-item>
+        <ion-select
+          Placeholder="Select Payment Method"
+          [(ngModel)]="this.payment_method"
+        >
+          <ion-select-option
+            >Paytm/Debit Card/Credit Card/Netbanking</ion-select-option
+          >
+          <ion-select-option>Cash On Delivery</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card
+    ><ion-card-header
+      style="text-align: center; font-weight: 700; font-size: 2em"
+    >
+      Coupon Code </ion-card-header
+    ><ion-card-content>
+      <ion-item>
+        <ion-input
+          type="text"
+          Placeholder="Enter Coupon Code"
+          [(ngModel)]="coupon_code"
+        >
+        </ion-input>
+        <ion-button (click)="couponvalue()"> Apply Coupon </ion-button>
+        <!-- <ion-select
+          style="width: 100%"
+          Placeholder="Select Coupon Code"
+          *ngFor="let item of coupon"
+          (ionChange)="couponvalue(item.code,item.id,item.amount)"
+        >
+          <ion-select-option>{{item.code}}</ion-select-option> 
+        </ion-select>-->
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+<!-- <ion-footer
+  style="
+    text-align: center;
+    background-color: #60be74;
+    padding: 6px;
+    font-weight: 700;
+  "
+  (click)="postorder()"
+  >Place Order
+</ion-footer> -->
+<ion-footer (click)="postorder()">
+  <ion-toolbar style="text-align: center; background-color: #60be74">
+    <ion-title style="font-size: 100%; font-family: revert">
+      Place Order</ion-title
+    >
+  </ion-toolbar>
+</ion-footer>

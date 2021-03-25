@@ -1,0 +1,336 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-menu-toggle slot="start">
+      <ion-icon
+        name="menu-outline"
+        style="font-size: 170%; font-weight: bold; margin-left: 11%"
+      ></ion-icon>
+    </ion-menu-toggle>
+    <ion-title style="font-size: 100%; font-family: revert"
+      ><ion-img src="assets/logo.png" alt="Freshofast" style="width: 59%">
+      </ion-img
+    ></ion-title>
+    <!-- <ion-buttons slot="end" style="margin-right: 2%">
+      <ion-icon slot="end" name="search-outline"></ion-icon>
+    </ion-buttons>
+    <ion-buttons slot="end" style="margin-right: 4%">
+      <ion-icon name="cart-outline" style="font-size: 144%"></ion-icon>
+    </ion-buttons> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content mode="md">
+  <!-- <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)"> </ion-refresher> -->
+  <ion-card style="margin-top: 0px; height: 5%">
+    <div
+      style="
+        margin-bottom: 5%;
+        font-weight: bolder;
+        font-size: 1.1em;
+        float: left;
+      "
+      *ngIf="cartlist"
+    >
+      items:-{{cartlist.length}}
+    </div>
+    <div
+      *ngIf="cost"
+      style="
+        margin-bottom: 5%;
+        font-weight: bolder;
+        font-size: 1.1em;
+        float: right;
+      "
+    >
+      Total:Rs.{{Grand_Total}}
+    </div>
+  </ion-card>
+  <ion-card *ngFor="let item of cartlist;let i=index "
+    ><ion-item
+      ><span style="font-size: 0.8em; width: 10em; font-size: 1.1em"
+        ><p>{{item.product_name}}</p>
+        <p>{{item.product_price}}</p>
+        <p>Quantity x{{item.quantity}}</p>
+        <p style="color: red" (click)="deleteitem(item.key)">Remove</p></span
+      ></ion-item
+    ><ion-item
+      ><ion-icon name="remove-circle" (click)="decrement(i)">-</ion-icon>
+      {{item.quantity}}
+      <ion-icon name="add-circle" (click)=" increment(i)">+</ion-icon
+      ><ion-button
+        style="
+          margin-left: 6em;
+          border-radius: 1em;
+          background-color: #60be74;
+          height: 3em;
+          width: 11em;
+        "
+        (click)="updateitem(item.key)"
+      >
+        Update Item
+      </ion-button></ion-item
+    ><ion-item></ion-item
+  ></ion-card>
+  <!-- <ion-card>
+    <ion-item>
+      <ion-avatar slot="start">
+        <ion-img src="assets/cauliflower.png"> </ion-img>
+      </ion-avatar>
+      <ion-label>
+        <h2>Cauliflower</h2>
+        <h3>
+          Rs.20.5
+          <button
+            style="
+              background-color: grey;
+              border-radius: 60px;
+              margin-left: 56%;
+            "
+          >
+            x
+          </button>
+        </h3>
+        <h3>
+          Remove<button style="margin-left: 35%; border-radius: 16px">+</button>
+          <input type="number" style="width: 8%; border-radius: 35px" />
+          <button style="border-radius: 16px">-</button
+          ><button
+            style="background-color: grey; border-radius: 60px; margin-left: 2%"
+          >
+            !
+          </button>
+        </h3>
+        <h4 style="color: red">Move to Wishlist</h4>
+      </ion-label>
+    </ion-item>
+  </ion-card> -->
+  <!-- <ion-card>
+    <ion-item>
+      <ion-avatar slot="start">
+        <ion-img src="assets/cauliflower.png"> </ion-img>
+      </ion-avatar>
+      <ion-label>
+        <h2>Cauliflower</h2>
+        <h3>
+          Rs.20.5
+          <button
+            style="
+              background-color: grey;
+              border-radius: 60px;
+              margin-left: 56%;
+            "
+          >
+            x
+          </button>
+        </h3>
+        <h3>
+          Remove<button style="margin-left: 35%; border-radius: 16px">+</button>
+          <input type="number" style="width: 8%; border-radius: 35px" />
+          <button style="border-radius: 16px">-</button
+          ><button
+            style="background-color: grey; border-radius: 60px; margin-left: 2%"
+          >
+            !
+          </button>
+        </h3>
+        <h4 style="color: red">Move to Wishlist</h4>
+      </ion-label>
+    </ion-item>
+  </ion-card> -->
+  <div
+    style="
+      margin-top: 2%;
+      margin-left: 4%;
+      font-size: 100%;
+      font-family: unset;
+      margin-bottom: 2%;
+    "
+  >
+    <b>BEST SELLING</b>
+  </div>
+  <ion-slides
+    #mySlider
+    style="margin-top: 1%; height: 50%"
+    *ngIf="featuredList"
+  >
+    <ion-slide
+      style="background-color: white"
+      *ngFor="let data of featuredList | slice:0:3;let i=index;"
+    >
+      <ion-col size="6" style="padding: 11px" *ngIf="featuredList[i+i]">
+        <div class="box" style="background-color: white; height: 96%">
+          <ion-img src="{{featuredList[i+i].images.src}}"> </ion-img>
+
+          <span
+            style="
+              margin-left: -1%;
+              font-size: 17px;
+              width: 100%;
+              height: 100%;
+              color: black;
+            "
+          >
+            {{featuredList[i+i].name | slice:0:10}}......
+          </span>
+          <span style="font-size: 15px; margin-left: -4%; color: black">
+            <ion-label
+              *ngIf="featuredList[i+i].quantity[0].is_in_stock == false"
+              style="color: red"
+            >
+              Out of stock
+            </ion-label>
+            <ion-select
+              placeholder="Select One"
+              (ionChange)="quanity($event.target.value)"
+              value="{{featuredList[i+i].quantity[0].weight}}"
+            >
+              <ion-select-option
+                *ngFor="let item of featuredList[i+i].quantity "
+                value="{{item.weight}}"
+                >{{item.weight_html}}
+                <p>Rs.{{item.display_price}}</p></ion-select-option
+              >
+            </ion-select>
+          </span>
+
+          <div style="width: 103%">
+            <button
+              *ngIf="featuredList[i+i].quantity[0].is_in_stock == false"
+              type="button"
+              class="btn btn-success"
+              style="
+                background-color: #60be74;
+                width: 87%;
+                border-radius: 5px;
+                height: 30px;
+                font-size: 0.8em;
+                font-weight: 700;
+              "
+            >
+              Add toCart
+            </button>
+            <button
+              *ngIf="featuredList[i+i].quantity[0].is_in_stock == true"
+              type="button"
+              class="btn btn-success"
+              style="
+                background-color: #60be74;
+                width: 87%;
+                border-radius: 5px;
+                height: 30px;
+                font-size: 0.8em;
+                font-weight: 700;
+              "
+              (click)="additem(featuredList[i+i],i+i,featuredList[i+i].quantity[0].weight)"
+            >
+              Add toCart
+            </button>
+          </div>
+        </div>
+      </ion-col>
+      <ion-col style="padding: 11px" *ngIf="featuredList[i+i+1]">
+        <div class="box" style="background-color: white; height: 96%">
+          <ion-img src="{{featuredList[i+i+1].images.src}}"> </ion-img>
+          <span
+            style="
+              margin-left: -1%;
+              font-size: 17px;
+              width: 100%;
+              height: 100%;
+              color: black;
+            "
+          >
+            {{featuredList[i+i+1].name | slice:0:10}}......
+          </span>
+          <span style="font-size: 15px; margin-left: -4%; color: black">
+            <ion-label
+              *ngIf="featuredList[i+i+1].quantity[0].is_in_stock == false"
+              style="color: red"
+            >
+              Out of stock
+            </ion-label>
+            <ion-select
+              placeholder="Select One"
+              (ionChange)="quanity($event.target.value)"
+              value="{{featuredList[i+i+1].quantity[0].weight}}"
+            >
+              <ion-select-option
+                *ngFor="let item of featuredList[i+i+1].quantity "
+                value="{{item.weight}}"
+                >{{item.weight_html}}
+                <p>Rs.{{item.display_price}}</p></ion-select-option
+              >
+            </ion-select>
+          </span>
+          <div style="width: 103%">
+            <button
+              *ngIf="featuredList[i+i+1].quantity[0].is_in_stock == true"
+              type="button"
+              class="btn btn-success"
+              style="
+                background-color: #60be74;
+                width: 87%;
+                border-radius: 5px;
+                height: 30px;
+                font-size: 0.8em;
+                font-weight: 700;
+              "
+              (click)="additem(featuredList[i+i+1],i+i+1,featuredList[i+i+1].quantity[0].weight)"
+            >
+              Add toCart
+            </button>
+            <button
+              *ngIf="featuredList[i+i+1].quantity[0].is_in_stock == false"
+              type="button"
+              class="btn btn-success"
+              style="
+                background-color: #60be74;
+                width: 87%;
+                border-radius: 5px;
+                height: 30px;
+                font-size: 0.8em;
+                font-weight: 700;
+              "
+            >
+              Add toCart
+            </button>
+          </div>
+        </div>
+      </ion-col>
+    </ion-slide>
+  </ion-slides>
+  <ion-card style="height: 22%; text-align: center" *ngIf="cost">
+    <ion-label>
+      <h3 style="font-size: 1.1em; color: black; margin-top: 4%">
+        Subtotal ex. Rs.{{cost.subtotal}}
+      </h3>
+      <h3 style="font-size: 1.1em; color: black; margin-top: 4%">
+        Shipping Charges Rs.{{ShippingCharges}}
+      </h3>
+      <h3 style="font-size: 1.1em; color: black; margin-top: 4%">
+        Grand Total Rs.{{Grand_Total}}
+      </h3>
+    </ion-label>
+  </ion-card>
+  <!-- <div>
+    <h6 style="color: grey; margin-left: 33%">Discount Code</h6>
+  </div>
+  <ion-input
+    type="input"
+    placeholder="Enter your Coupon code here"
+    style="margin-left: 19%"
+  >
+  </ion-input>
+  <div style="color: red; margin-left: 40%; margin-top: 6%">APPLY</div> -->
+</ion-content>
+<ion-footer mode="md">
+  <ion-toolbar
+    color="primary"
+    style="text-align: center"
+    [routerLink]="['/order-detail']"
+  >
+    <ion-title style="font-size: 1.1em; font-family: revert">
+      Checkout</ion-title
+    >
+  </ion-toolbar>
+</ion-footer>

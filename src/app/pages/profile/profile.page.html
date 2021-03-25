@@ -1,0 +1,100 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-menu-toggle slot="start">
+      <ion-icon
+        name="menu-outline"
+        style="font-size: 170%; font-weight: bold; margin-left: 11%"
+      ></ion-icon>
+    </ion-menu-toggle>
+    <ion-title style="font-size: 100%; font-family: revert"
+      ><ion-img src="assets/logo.png" alt="Freshofast" style="width: 59%">
+      </ion-img
+    ></ion-title>
+    <!-- <ion-buttons slot="end" style="margin-right: 2%">
+      <ion-icon slot="end" name="search-outline"></ion-icon>
+    </ion-buttons> -->
+    <!-- <ion-buttons
+      slot="end"
+      style="margin-right: 4%"
+      [routerLink]="['/checkout-page']"
+    >
+      <ion-icon name="cart-outline" style="font-size: 144%"></ion-icon>
+      <span
+        style="
+          color: white;
+          background-color: red;
+          border-radius: 23px;
+          padding: 1px;
+          text-align: center;
+        "
+        >{{cartlist.length}}</span
+      >
+    </ion-buttons> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card
+    ><ion-card-header
+      style="text-align: center; font-weight: 700; font-size: 2em"
+    >
+      User Profile </ion-card-header
+    ><ion-card-content
+      ><ion-item
+        ><ion-label>First Name:-</ion-label
+        ><ion-input type="text" [(ngModel)]="user_name"></ion-input
+      ></ion-item>
+
+      <ion-item
+        ><ion-label>Last Name:-</ion-label
+        ><ion-input type="text" [(ngModel)]="last_name"></ion-input
+      ></ion-item>
+
+      <ion-item
+        ><ion-label>Email:-</ion-label
+        ><ion-input type="text" [(ngModel)]="mail"></ion-input
+      ></ion-item>
+
+      <ion-item
+        ><ion-label>Phone number:-</ion-label
+        ><ion-input type="text" [(ngModel)]="phone"></ion-input
+      ></ion-item>
+
+      <ion-item
+        ><ion-label>Address:-</ion-label
+        ><ion-input type="text" [(ngModel)]="address_1"></ion-input
+      ></ion-item>
+
+      <ion-item
+        ><ion-label>City:-</ion-label
+        ><ion-input type="text" [(ngModel)]="city"></ion-input
+      ></ion-item>
+
+      <ion-item
+        ><ion-label>State:-</ion-label
+        ><ion-input type="text" [(ngModel)]="state"> </ion-input
+      ></ion-item>
+
+      <ion-item
+        ><ion-label>Postcode:-</ion-label
+        ><ion-input type="text" [(ngModel)]="postcode"></ion-input
+      ></ion-item>
+
+      <ion-item
+        ><ion-button
+          style="
+            background-color: #60be74;
+            width: 70%;
+            height: 70%;
+            border-radius: 7px;
+            font-size: 1em;
+            font-weight: 700;
+          "
+          (click)="updateprofile()"
+        >
+          Update Profile</ion-button
+        ></ion-item
+      ></ion-card-content
+    ></ion-card
+  >
+</ion-content>

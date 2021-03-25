@@ -1,0 +1,149 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-menu-toggle slot="start">
+      <ion-icon
+        name="menu-outline"
+        style="font-size: 170%; font-weight: bold; margin-left: 11%"
+      ></ion-icon>
+    </ion-menu-toggle>
+    <ion-title style="font-size: 100%; font-family: revert"
+      ><ion-img src="assets/logo.png" alt="Freshofast" style="width: 59%">
+      </ion-img
+    ></ion-title>
+    <!-- <ion-buttons slot="end" style="margin-right: 2%">
+      <ion-icon slot="end" name="search-outline"></ion-icon>
+    </ion-buttons> -->
+    <ion-buttons
+      slot="end"
+      style="margin-right: 4%"
+      [routerLink]="['/checkout-page']"
+    >
+      <ion-icon name="cart-outline" style="font-size: 144%"></ion-icon>
+      <span
+        style="
+          color: white;
+          background-color: red;
+          border-radius: 23px;
+          padding: 1px;
+          text-align: center;
+        "
+        >{{cartlist.length}}</span
+      >
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content mode="md">
+  <div
+    style="margin-top: 3%; margin-left: 3%; font-size: 101%; font-weight: 600"
+  >
+    View All
+  </div>
+  <!-- <ion-list>
+    <ion-img src="assets/cauliflower.png" style="width: 21%;">
+
+    </ion-img>
+    Cauliflower<span>
+      
+    </span>
+  </ion-list> -->
+  <ion-list>
+    <ion-card *ngFor="let list of vegetablelist;let i=index">
+      <div style="width: 40%; float: left">
+        <ion-img
+          src="{{list.images.src}}"
+          (click)="openVegetablaPage(list.id)"
+        ></ion-img>
+      </div>
+      <div
+        style="
+          width: 60%;
+          text-align: center;
+          color: black;
+          float: right;
+          position: relative;
+          margin-top: 5%;
+        "
+      >
+        {{list.name}}
+        <span
+          ><br />
+          <ion-label
+            *ngIf="list.quantity[0].is_in_stock == false"
+            style="color: red"
+          >
+            Out of stock
+          </ion-label>
+          <ion-select
+            placeholder="Select One"
+            (ionChange)="quanity($event.target.value)"
+            value="{{list.quantity[0].weight}}"
+            style="max-width: 100%; color: black"
+          >
+            <ion-select-option
+              *ngFor="let item of list.quantity "
+              value="{{item.weight}}"
+              >{{item.weight_html}}
+              <p>Rs.{{item.display_price}}</p></ion-select-option
+            >
+          </ion-select>
+        </span>
+      </div>
+      <div style="text-align: center">
+        <ion-button
+          *ngIf="list.quantity[0].is_in_stock == true"
+          style="
+            margin-left: 0%;
+            background-color: #60be74;
+            border-radius: 12px;
+            color: black;
+            margin-top: 1em;
+          "
+          (click)="additem(list,i,list.quantity[0].weight)"
+          ><ion-icon name="cart-outline"></ion-icon> Add to Cart
+        </ion-button>
+        <ion-button
+          *ngIf="list.quantity[0].is_in_stock == false"
+          style="
+            margin-left: 0%;
+            background-color: #60be74;
+            border-radius: 12px;
+            color: black;
+            margin-top: 1em;
+          "
+          ><ion-icon name="cart-outline"></ion-icon> Add to Cart
+        </ion-button>
+      </div></ion-card
+    >
+    <!-- <ion-card>
+      <ion-item>
+        <ion-avatar slot="start">
+          <ion-img src="assets/cauliflower.png"> </ion-img>
+        </ion-avatar>
+        <ion-label>
+          <h2>Cauliflower</h2>
+          <h3>
+            1 per Pack
+            <button style="margin-left: 30%; border-radius: 16px">+</button>
+            <input type="number" style="width: 8%; border-radius: 35px" />
+            <button style="border-radius: 16px">-</button>
+          </h3>
+          <h3>
+            Rs.20.5<button
+              [routerLink]="['/checkout-page']"
+              style="
+                margin-left: 35%;
+                background-color: #15ff00d1;
+                border-radius: 12px;
+                color: white;
+              "
+            >
+              <ion-icon name="cart-outline"></ion-icon>
+              Add to Cart
+            </button>
+          </h3>
+        </ion-label>
+      </ion-item>
+    </ion-card> -->
+  </ion-list>
+</ion-content>

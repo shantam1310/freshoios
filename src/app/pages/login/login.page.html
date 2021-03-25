@@ -1,0 +1,91 @@
+<ion-content mode="md"
+  ><div
+    style="
+      text-align: center;
+      font-size: 4em;
+      font-family: auto;
+      margin-top: 1.5em;
+    "
+  >
+    <span><ion-img src="assets/logo.png" alt="Freshofast"></ion-img></span>
+  </div>
+  <div
+    style="
+      font-size: 1.4em;
+      text-align: center;
+      font-weight: 700;
+      margin-top: 0.5em;
+    "
+  >
+    Welcome!
+  </div>
+  <div
+    style="
+      font-size: 1.4em;
+      text-align: center;
+      font-weight: 700;
+      margin-top: 0.8em;
+    "
+  >
+    Login in our account and get started
+  </div>
+  <ion-input
+    type="text"
+    placeholder="User Name or Email"
+    style="
+      background-color: white;
+      margin-top: 3%;
+      margin-left: 25%;
+      width: 48%;
+      border-radius: 4%;
+      height: 5%;
+      color: black;
+    "
+    [(ngModel)]="user_name"
+  ></ion-input
+  ><ion-input
+    type="password"
+    placeholder="Password"
+    style="
+      background-color: white;
+      margin-top: 3%;
+      margin-left: 25%;
+      width: 48%;
+      border-radius: 4%;
+      height: 5%;
+      color: black;
+    "
+    [(ngModel)]="Password"
+  ></ion-input
+  ><button
+    style="
+      background-color: #60be74;
+      border: none;
+      color: #f5f6f9;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 16px;
+      margin-left: 31%;
+      margin-top: 4%;
+      width: 36%;
+    "
+    (click)="login()"
+  >
+    Login
+  </button>
+  <div
+    style="
+      font-size: 1.4em;
+      text-align: center;
+      font-weight: 700;
+      margin-top: 0.8em;
+    "
+    [routerLink]="['/sign-up']"
+  >
+    New here? Sign Up
+  </div>
+</ion-content>

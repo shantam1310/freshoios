@@ -1,0 +1,84 @@
+<ion-header mode="md">
+  <ion-toolbar>
+    <ion-icon
+      slot="start"
+      name="arrow-back-outline"
+      style="font-size: 2em; font-weight: bold; margin-left: 3%"
+    ></ion-icon>
+
+    <ion-title style="font-size: 100%; font-family: revert"
+      >Surjan Times</ion-title
+    >
+    <ion-buttons slot="end" style="margin-right: 2%">
+      <ion-icon slot="end" name="search-outline"></ion-icon>
+    </ion-buttons>
+    <ion-buttons slot="end" style="margin-right: 4%">
+      <ion-icon name="cart-outline" style="font-size: 144%"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-slides
+    #mySlider
+    (ionSlidesDidLoad)="slidesDidLoad(mySlider)"
+    pager="false"
+    style="height: 30%"
+  >
+    <!-- <ion-slide class="first-slide">
+  </ion-slide> -->
+    <ion-slide style="background-color: green">
+      <ion-img src="assets/slider1.jpeg" style="width: 100%"> </ion-img>
+    </ion-slide>
+    <ion-slide style="background-color: blue">
+      <ion-img src="assets/slider2.jpeg" style="width: 100%"> </ion-img>
+    </ion-slide>
+    <!-- <ion-slide style="background-color: red">
+      <h2>Slide 3</h2>
+    </ion-slide> -->
+  </ion-slides>
+  <div style="font-size: 1.3em; font-weight: 500; padding: 5%">
+    <label>
+      We can help you improve your writing, and your writing skills. From blog
+      writing to story writing
+    </label>
+  </div>
+  <ion-icon name="calendar-outline" style="margin-left: 5%"></ion-icon>
+  <div style="background-color: blue; height: 8%; text-align: center">
+    Advertisement here
+  </div>
+  <div style="padding: 12px; font-size: 1em">
+    The Paragraphs module allows content creators to choose which kinds of
+    paragraphs they want to place on the page, and the order in which they want
+    to place them. They can do all of this through the familiar node edit
+    screen. There is no need to resort to code, the dreaded block placement
+    config screen or Panelizer overrides. They just use node edit form where all
+    content is available to them in one place.
+  </div>
+  <div>
+    <ion-img src="assets/slider1.jpeg"> </ion-img>
+  </div>
+  <div style="padding: 12px; font-size: 1em">
+    The Paragraphs module allows content creators to choose which kinds of
+    paragraphs they want to place on the page, and the order in which they want
+    to place them. They can do all of this through the familiar node edit
+    screen. There is no need to resort to code, the dreaded block placement
+    config screen or Panelizer overrides. They just use node edit form where all
+    content is available to them in one place.
+  </div>
+  <div style="color: red; text-align: center; color: red; font-size: 1.2em">
+    You may like this News
+  </div>
+  <ion-card>
+    <ion-item>
+      <ion-img slot="start" src="assets/frozen2.png" style="width: 23%">
+      </ion-img>
+
+      <ion-label>
+        <p>
+          They just use node edit form where all content is available to them in
+          one place
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-card>
+</ion-content>

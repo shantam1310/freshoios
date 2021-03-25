@@ -1,0 +1,207 @@
+<ion-app>
+  <ion-split-pane contentId="mainMenu">
+    <ion-menu
+      side="start"
+      contentId="mainMenu"
+      menuId="mainMenu"
+      type="overlay"
+    >
+      <ion-header mode="md">
+        <ion-toolbar style="text-align: center">
+          <ion-img src="assets/logo.png" alt="Freshofast" style="width: 59%">
+          </ion-img>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content mode="md">
+        <ion-list>
+          <ion-menu-toggle auto-hide="false">
+            <ion-item [routerLink]="['/home']"
+              ><ion-img
+                src="assets/homecate.png"
+                style="height: 1.7em; width: 1.7em"
+              ></ion-img
+              ><span style="padding-left: 10px">Home</span></ion-item
+            >
+
+            <ion-item [routerLink]="['/profile']">
+              <ion-icon name="person" style="color: #1f2d41"></ion-icon
+              ><span style="margin-left: 10px">Profile</span></ion-item
+            >
+
+            <ion-item [routerLink]="['/list-page']"
+              ><ion-img
+                src="assets/vegetablecate.png"
+                style="height: 1.7em; width: 1.7em"
+                class="md hydrated"
+              ></ion-img
+              ><span style="margin-left: 10px">Vegetables</span></ion-item
+            >
+            <ion-item [routerLink]="['/fruits-list-page']"
+              ><ion-img
+                src="assets/fruit.png"
+                style="height: 1.7em; width: 1.7em"
+              ></ion-img
+              ><span style="margin-left: 10px">Fruits</span></ion-item
+            >
+
+            <ion-item [routerLink]="['/herb-list-page']"
+              ><ion-img
+                src="assets/herbcate.png"
+                style="height: 1.7em; width: 1.7em"
+                class="md hydrated"
+              ></ion-img
+              ><span style="margin-left: 10px">Herbs</span></ion-item
+            >
+            <ion-item [routerLink]="['/exotic-vegetable-list']"
+              ><ion-img
+                src="assets/exveg.png"
+                style="height: 1.7em; width: 1.7em"
+                class="md hydrated"
+              ></ion-img
+              ><span style="margin-left: 10px"
+                >Exotic Vegetables</span
+              ></ion-item
+            >
+            <ion-item [routerLink]="['/exotic-list']"
+              ><ion-img
+                src="assets/exfruit.png"
+                style="height: 1.7em; width: 1.7em"
+                class="md hydrated"
+              ></ion-img
+              ><span style="margin-left: 10px">Exotic Fruits</span></ion-item
+            >
+            <ion-item [routerLink]="['/seasonal-list-page']"
+              ><ion-img
+                src="assets/seasonalcate.png"
+                style="height: 1.7em; width: 1.7em"
+              ></ion-img
+              ><span style="margin-left: 10px">Seasonal</span></ion-item
+            >
+            <ion-item [routerLink]="['/frozen-list-page']"
+              ><ion-img
+                src="assets/fr.png"
+                style="height: 1.7em; width: 1.7em"
+                class="md hydrated"
+              ></ion-img
+              ><span style="margin-left: 10px"
+                >Ready to Eat & Frozen</span
+              ></ion-item
+            >
+            <ion-item [routerLink]="['/diary-list-page']"
+              ><ion-img
+                src="assets/dary.png"
+                style="height: 1.7em; width: 1.7em"
+                class="md hydrated"
+              ></ion-img
+              ><span style="margin-left: 10px">Dairy</span></ion-item
+            >
+            <ion-item [routerLink]="['/view-all']"
+              ><ion-img
+                src="assets/viall.png"
+                style="height: 1.7em; width: 1.7em"
+                class="md hydrated"
+              ></ion-img
+              ><span style="margin-left: 10px">View All</span></ion-item
+            >
+
+            <ion-item [routerLink]="['/about-us']"
+              ><ion-img
+                src="assets/profilecate.png"
+                style="height: 1.7em; width: 1.7em"
+              ></ion-img
+              ><span style="margin-left: 10px">About Us</span></ion-item
+            >
+
+            <ion-item (click)="rateUS()"
+              ><ion-img
+                src="assets/Delivery.png"
+                style="height: 1.7em; width: 1.7em"
+              ></ion-img
+              ><span style="margin-left: 10px"
+                >Delivery Information</span
+              ></ion-item
+            >
+
+            <ion-item [routerLink]="['/privacy-policy']"
+              ><ion-img
+                src="assets/privacycate.png"
+                style="height: 1.7em; width: 1.7em"
+              ></ion-img
+              ><span style="margin-left: 10px">Privacy Policy</span></ion-item
+            >
+
+            <ion-item [routerLink]="['/termsand-condition']"
+              ><ion-img
+                src="assets/termscate.png"
+                style="height: 1.7em; width: 1.7em"
+              ></ion-img
+              ><span style="margin-left: 10px"
+                >Terms &amp; Conditions</span
+              ></ion-item
+            >
+
+            <ion-item [routerLink]="['/return-and-refund']"
+              ><ion-img
+                src="assets/returncate.png"
+                style="height: 1.7em; width: 1.7em"
+              ></ion-img
+              ><span style="margin-left: 10px"
+                >Return &amp; Refund Policy</span
+              ></ion-item
+            >
+
+            <ion-item (click)="logout()"
+              ><ion-img
+                src="assets/logout.png"
+                style="height: 1.7em; width: 1.7em"
+              ></ion-img
+              ><span style="margin-left: 10px">Logout</span></ion-item
+            ></ion-menu-toggle
+          ></ion-list
+        >
+
+        <!-- <ion-item [routerLink]="['/list-page']" class="menuitem">
+              <ion-icon style="color: #1f2d41" name="snow"></ion-icon
+              ><span style="margin-left: 10px">About Us</span>
+            </ion-item>
+            <ion-item [routerLink]="['/list-page']" class="menuitem">
+              <ion-icon style="color: #1f2d41" name="snow"></ion-icon
+              ><span style="margin-left: 10px">Delivery Information</span>
+            </ion-item>
+            <ion-item (click)="rateUS()" class="menuitem">
+              <ion-icon style="color: #1f2d41" name="snow"></ion-icon
+              ><span style="margin-left: 10px">Privacy Policy</span>
+            </ion-item>
+            <ion-item (click)="rateUS()" class="menuitem">
+              <ion-icon style="color: #1f2d41" name="snow"></ion-icon
+              ><span style="margin-left: 10px">Terms & Conditions</span>
+            </ion-item>
+            <ion-item (click)="rateUS()" class="menuitem">
+              <ion-icon style="color: #1f2d41" name="snow"></ion-icon
+              ><span style="margin-left: 10px">Return & Refund Policy</span>
+            </ion-item>
+          </ion-menu-toggle>
+
+          
+        </ion-list> -->
+      </ion-content>
+      <ion-footer mode="md">
+        <ion-toolbar
+          style="
+            height: 40px;
+            color: white;
+            text-align: center;
+            --min-height: 40px;
+            max-height: 40px;
+          "
+        >
+          <div style="font-size: 14px">
+            Powered by Aaditri Technology &trade;
+          </div>
+        </ion-toolbar>
+      </ion-footer>
+    </ion-menu>
+
+    <ion-router-outlet id="mainMenu" main></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

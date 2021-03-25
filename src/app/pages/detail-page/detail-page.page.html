@@ -1,0 +1,121 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-menu-toggle slot="start">
+      <ion-icon
+        name="menu-outline"
+        style="font-size: 170%; font-weight: bold; margin-left: 11%"
+      ></ion-icon>
+    </ion-menu-toggle>
+    <ion-title style="font-size: 100%; font-family: revert"
+      ><ion-img src="assets/logo.png" alt="Freshofast" style="width: 59%">
+      </ion-img
+    ></ion-title>
+    <!-- <ion-buttons slot="end" style="margin-right: 2%">
+      <ion-icon slot="end" name="search-outline"></ion-icon>
+    </ion-buttons> -->
+    <ion-buttons
+      slot="end"
+      style="margin-right: 4%"
+      [routerLink]="['/checkout-page']"
+    >
+      <ion-icon name="cart-outline" style="font-size: 144%"></ion-icon>
+      <span
+        style="
+          color: white;
+          background-color: red;
+          border-radius: 23px;
+          padding: 1px;
+          text-align: center;
+        "
+        >{{cartlist.length}}</span
+      >
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="card-background-page" *ngIf="list">
+  <ion-slides #mySlider pager="false" style="height: 38%" *ngIf="list">
+    <ion-slide>
+      <ion-img src="{{list.images.src}}" style="margin-top: 5%"> </ion-img>
+    </ion-slide>
+    <!-- <ion-slide>
+      <ion-img src="assets/potato1.jpg"> </ion-img>
+    </ion-slide>
+    <ion-slide>
+      <h2>Slide 3</h2>
+    </ion-slide> -->
+  </ion-slides>
+  <div style="margin-left: 7%; font-size: 113%; font-weight: bold" *ngIf="list">
+    {{list.name}}
+  </div>
+  <div style="margin-left: 7%; margin-top: 2%">
+    <b>Rs.{{list.price}}</b>
+  </div>
+  <ion-item>
+    <ion-label> <small>(Included all Taxes)</small> </ion-label>
+    <ion-select
+      start="end"
+      *ngIf="list"
+      placeholder="Select One"
+      (ionChange)="quanity($event.target.value)"
+      value="{{list.quantity[0].weight}}"
+      style="max-width: 100%"
+    >
+      <ion-select-option
+        *ngFor="let item of list.quantity "
+        value="{{item.weight}}"
+        >{{item.weight_html}}
+        <p>Rs.{{item.display_price}}</p></ion-select-option
+      >
+    </ion-select>
+  </ion-item>
+
+  <div style="margin-left: 6%; margin-top: 2%; font-weight: 600">
+    Product Detail
+  </div>
+  <ion-item>
+    <p>{{list.description}}</p>
+  </ion-item>
+  <!-- <div style="height: 9%; margin-top: 4%">
+    <button
+      [routerLink]="['/checkout-page']"
+      style="
+        margin-left: 8%;
+        width: 31%;
+        background-color: #1cc716;
+        height: 68%;
+        border-radius: 6px;
+      "
+    >
+      ADD TO CART
+    </button>
+    <button
+      style="
+        margin-left: 19%;
+        width: 31%;
+        background-color: #f54407;
+        height: 68%;
+        border-radius: 6px;
+      "
+    >
+      BUY NOW
+    </button>
+  </div> -->
+
+  <!-- <ion-img src="assets/potato.jpeg" style="height: 35%;
+  margin-top: 5%;">
+
+  </ion-img> -->
+</ion-content>
+<ion-footer
+  style="
+    text-align: center;
+    background-color: #60be74;
+    padding: 6px;
+    font-weight: 700;
+  "
+  (click)="additem(list, list.quantity[0].weight)"
+  >Add To Cart
+  <div style="font-size: 1em"><ion-icon name="cart-outline"></ion-icon></div
+></ion-footer>
+<!--  -->

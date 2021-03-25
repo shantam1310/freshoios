@@ -1,0 +1,56 @@
+{
+  "_from": "cordova-paytm-allinonesdk",
+  "_id": "cordova-paytm-allinonesdk@1.0.4",
+  "_inBundle": false,
+  "_integrity": "sha512-aNSzeG3IKAAZPDMnTkexiAQQoXobcGq56xWERo4WqeTFUjDzkeVvHzS3cFTIjVwEOBgCKezJ69f+Wj2+F80lLQ==",
+  "_location": "/cordova-paytm-allinonesdk",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "cordova-paytm-allinonesdk",
+    "name": "cordova-paytm-allinonesdk",
+    "escapedName": "cordova-paytm-allinonesdk",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#DEV:/",
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-paytm-allinonesdk/-/cordova-paytm-allinonesdk-1.0.4.tgz",
+  "_shasum": "0d1b22d0df6bdce05d0e3bd724a374917be89cc2",
+  "_spec": "cordova-paytm-allinonesdk",
+  "_where": "/Users/shantamsharma/Desktop/yogesh/Archive",
+  "author": {
+    "name": "shivam gautam"
+  },
+  "bugs": {
+    "url": "https://github.com/paytm/paytm-allinonesdk-ionic-cordova/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-paytm-allinonesdk",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "dependencies": {},
+  "deprecated": false,
+  "description": "A starting point for all in one sdk",
+  "homepage": "https://github.com/paytm/paytm-allinonesdk-ionic-cordova#readme",
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "license": "ISC",
+  "name": "cordova-paytm-allinonesdk",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paytm/paytm-allinonesdk-ionic-cordova.git"
+  },
+  "version": "1.0.4"
+}
