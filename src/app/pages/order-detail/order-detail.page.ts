@@ -1033,7 +1033,7 @@ export class OrderDetailPage implements OnInit {
       .then((canLaunch: any) => console.log("Facebook is available", canLaunch))
       .catch((error: any) => console.error("Facebook is not available", error));
   }
-  async paytm(txn, order_ID) {
+  async paytm(txn: any, order_ID: any) {
     this.dismiss();
     if (this.coupon_anount) {
       let response = await this.allInOneSDK.startTransaction({
@@ -1101,7 +1101,7 @@ export class OrderDetailPage implements OnInit {
 
     //alert(json.STATUS);
   }
-  paymentstatus(order_ID) {
+  paymentstatus(order_ID: any) {
     //paymentstatus.php
     console.log(" order_ID ", typeof order_ID);
     console.log(" paytm  status ", order_ID);
@@ -1127,7 +1127,7 @@ export class OrderDetailPage implements OnInit {
       }
     );
   }
-  intiatetxn(order_ID) {
+  intiatetxn(order_ID: any) {
     console.log(" order_ID ", typeof order_ID);
     var ord_Id = order_ID.toString();
     console.log(

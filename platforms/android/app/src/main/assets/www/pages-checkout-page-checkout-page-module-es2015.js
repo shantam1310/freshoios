@@ -121,7 +121,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "fXoL");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "tk/3");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "tyNb");
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ "TEn/");
+/* harmony import */ var _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic-native/http/ngx */ "XSEc");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ "TEn/");
+
 
 
 
@@ -130,8 +132,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let CheckoutPagePage = class CheckoutPagePage {
-    constructor(http, route, loadingController, alertCtrl, popoverController) {
+    constructor(http, httpclient, route, loadingController, alertCtrl, popoverController) {
         this.http = http;
+        this.httpclient = httpclient;
         this.route = route;
         this.loadingController = loadingController;
         this.alertCtrl = alertCtrl;
@@ -161,9 +164,14 @@ let CheckoutPagePage = class CheckoutPagePage {
                 cart_item_key: key,
                 quantity: this.quantity,
             };
+            this.http.setDataSerializer("json");
             this.http
-                .post("https://freshofast.com/wp-json/cocart/v1/item", body, httpOptions)
-                .subscribe((res) => {
+                .post("https://freshofast.com/wp-json/cocart/v1/item", body, {
+                Authorization: "Basic " +
+                    btoa(`${localStorage.getItem("username")}:${localStorage.getItem("password")}`),
+                "Content-Type": "application/json",
+            })
+                .then((res) => {
                 var response = res;
                 console.log("update item", res);
                 this.quantity = null;
@@ -175,6 +183,7 @@ let CheckoutPagePage = class CheckoutPagePage {
             this.dismiss();
             alert("Already done");
         }
+        this.dismiss();
         ///wp-json/cocart/v1/item
     }
     deleteitem(key) {
@@ -204,11 +213,16 @@ let CheckoutPagePage = class CheckoutPagePage {
         // var body = {
         //   cart_item_key: key,
         // };
+        this.http.setDataSerializer("json");
         this.http
-            .delete("https://freshofast.com/wp-json/cocart/v1/item", 
-        //body,httpOptions
-        options)
-            .subscribe((res) => {
+            .delete("https://freshofast.com/wp-json/cocart/v1/item", {
+            cart_item_key: key,
+        }, {
+            Authorization: "Basic " +
+                btoa(`${localStorage.getItem("username")}:${localStorage.getItem("password")}`),
+            "Content-Type": "application/json",
+        })
+            .then((res) => {
             var response = res;
             console.log("delete ", res);
             this.dismiss();
@@ -240,9 +254,18 @@ let CheckoutPagePage = class CheckoutPagePage {
             }),
         };
         this.http
-            .get("https://freshofast.com/wp-json/cocart/v1/get-cart", httpOptions)
-            .subscribe((res) => {
-            var response = res;
+            .get("https://freshofast.com/wp-json/cocart/v1/get-cart", {}, {
+            Authorization: "Basic " +
+                btoa(`${localStorage.getItem("username")}:${localStorage.getItem("password")}`),
+            "Content-Type": "application/json",
+        })
+            .then((res) => {
+            var val = res.data;
+            var b = val.replace(/^\s+/g, "");
+            var c = JSON.parse(b);
+            console.log("resssssss", c);
+            var response = c;
+            // var response = res;
             //this.dismiss();
             // this.cartlist = res;
             for (var propName in response) {
@@ -262,7 +285,9 @@ let CheckoutPagePage = class CheckoutPagePage {
         // this.vegetablesflag = true;
         if (!this.featuredList) {
             //this.presentLoading();
-            this.http.get("http://freshofast.com/homelist/").subscribe((res) => {
+            this.httpclient
+                .get("http://freshofast.com/homelist/")
+                .subscribe((res) => {
                 var response = res;
                 this.featuredList = response.featuredproduct;
                 //this.dismiss();
@@ -290,10 +315,18 @@ let CheckoutPagePage = class CheckoutPagePage {
             }),
         };
         this.http
-            .get("https://freshofast.com/wp-json/cocart/v1/totals", httpOptions)
-            .subscribe((res) => {
-            var item = res;
-            this.cost = res;
+            .get("https://freshofast.com/wp-json/cocart/v1/totals", {}, {
+            Authorization: "Basic " +
+                btoa(`${localStorage.getItem("username")}:${localStorage.getItem("password")}`),
+            "Content-Type": "application/json",
+        })
+            .then((res) => {
+            var val = res.data;
+            var b = val.replace(/^\s+/g, "");
+            var c = JSON.parse(b);
+            console.log("resssssss", c);
+            var item = c;
+            this.cost = c;
             var total = parseInt(this.cost.total);
             this.Grand_Total = this.cost.total;
             this.ShippingCharges = this.cost.shipping_total;
@@ -383,13 +416,18 @@ let CheckoutPagePage = class CheckoutPagePage {
                         variation_id: value.quantity[i].variation_id,
                     };
                     console.log("if condition", value.quantity[i].weight, this.value);
+                    this.http.setDataSerializer("json");
                     this.http
                         .post("https://freshofast.com/wp-json/cocart/v1/add-item", 
                     //{
-                    body, httpOptions
+                    body, {
+                        Authorization: "Basic " +
+                            btoa(`${localStorage.getItem("username")}:${localStorage.getItem("password")}`),
+                        "Content-Type": "application/json",
+                    }
                     //}
                     )
-                        .subscribe((data) => {
+                        .then((data) => {
                         console.log("success", data);
                         this.cartdata();
                         // this.Additem = this.Additem + 1;
@@ -432,15 +470,21 @@ let CheckoutPagePage = class CheckoutPagePage {
                         variation_id: value.quantity[i].variation_id,
                     };
                     console.log("if condition", value.quantity[i].weight, this.value);
+                    this.http.setDataSerializer("json");
                     this.http
                         .post("https://freshofast.com/wp-json/cocart/v1/add-item", 
                     //{
-                    body, httpOptions
+                    body, {
+                        Authorization: "Basic " +
+                            btoa(`${localStorage.getItem("username")}:${localStorage.getItem("password")}`),
+                        "Content-Type": "application/json",
+                    }
                     //}
                     )
-                        .subscribe((data) => {
+                        .then((data) => {
                         console.log("success", data);
                         this.cartdata();
+                        this.addcardtoast();
                         // this.Additem = this.Additem + 1;
                         // localStorage.setItem("addedItem", this.Additem.toString());
                         // this.dismiss();
@@ -465,11 +509,12 @@ let CheckoutPagePage = class CheckoutPagePage {
     }
 };
 CheckoutPagePage.ctorParameters = () => [
+    { type: _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_6__["HTTP"] },
     { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"] },
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["LoadingController"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["AlertController"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["PopoverController"] }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["LoadingController"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["AlertController"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["PopoverController"] }
 ];
 CheckoutPagePage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({

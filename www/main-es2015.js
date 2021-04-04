@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/shantamsharma/Desktop/untitled folder 3/freshofastIos-master/src/main.ts */"zUnb");
+module.exports = __webpack_require__(/*! /Users/shantamsharma/Desktop/untitled folder 2/freshofastIos/src/main.ts */"zUnb");
 
 
 /***/ }),
@@ -514,7 +514,7 @@ const routes = [
     },
     {
         path: "",
-        redirectTo: "login",
+        redirectTo: "home",
         pathMatch: "full",
     },
     {
@@ -558,64 +558,64 @@ const routes = [
         loadChildren: () => __webpack_require__.e(/*! import() | pages-innersurjan-innersurjan-module */ "pages-innersurjan-innersurjan-module").then(__webpack_require__.bind(null, /*! ./pages/innersurjan/innersurjan.module */ "OxXw")).then((m) => m.InnersurjanPageModule),
     },
     {
-        path: 'order-detail',
-        loadChildren: () => __webpack_require__.e(/*! import() | pages-order-detail-order-detail-module */ "pages-order-detail-order-detail-module").then(__webpack_require__.bind(null, /*! ./pages/order-detail/order-detail.module */ "982l")).then(m => m.OrderDetailPageModule)
+        path: "order-detail",
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-order-detail-order-detail-module */ "pages-order-detail-order-detail-module").then(__webpack_require__.bind(null, /*! ./pages/order-detail/order-detail.module */ "982l")).then((m) => m.OrderDetailPageModule),
     },
     {
-        path: 'location',
-        loadChildren: () => Promise.all(/*! import() | pages-location-location-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-location-location-module")]).then(__webpack_require__.bind(null, /*! ./pages/location/location.module */ "lPJH")).then(m => m.LocationPageModule)
+        path: "location",
+        loadChildren: () => Promise.all(/*! import() | pages-location-location-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-location-location-module")]).then(__webpack_require__.bind(null, /*! ./pages/location/location.module */ "lPJH")).then((m) => m.LocationPageModule),
     },
     {
-        path: 'exotic-list',
-        loadChildren: () => __webpack_require__.e(/*! import() | pages-exotic-list-exotic-list-module */ "pages-exotic-list-exotic-list-module").then(__webpack_require__.bind(null, /*! ./pages/exotic-list/exotic-list.module */ "CRsc")).then(m => m.ExoticListPageModule)
+        path: "exotic-list",
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-exotic-list-exotic-list-module */ "pages-exotic-list-exotic-list-module").then(__webpack_require__.bind(null, /*! ./pages/exotic-list/exotic-list.module */ "CRsc")).then((m) => m.ExoticListPageModule),
     },
     {
-        path: 'exotic-detail',
-        loadChildren: () => __webpack_require__.e(/*! import() | pages-exotic-detail-exotic-detail-module */ "pages-exotic-detail-exotic-detail-module").then(__webpack_require__.bind(null, /*! ./pages/exotic-detail/exotic-detail.module */ "DT0+")).then(m => m.ExoticDetailPageModule)
+        path: "exotic-detail",
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-exotic-detail-exotic-detail-module */ "pages-exotic-detail-exotic-detail-module").then(__webpack_require__.bind(null, /*! ./pages/exotic-detail/exotic-detail.module */ "DT0+")).then((m) => m.ExoticDetailPageModule),
     },
     {
-        path: 'exotic-vegetable-list',
-        loadChildren: () => __webpack_require__.e(/*! import() | pages-exotic-vegetable-list-exotic-vegetable-list-module */ "pages-exotic-vegetable-list-exotic-vegetable-list-module").then(__webpack_require__.bind(null, /*! ./pages/exotic-vegetable-list/exotic-vegetable-list.module */ "8d8y")).then(m => m.ExoticVegetableListPageModule)
+        path: "exotic-vegetable-list",
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-exotic-vegetable-list-exotic-vegetable-list-module */ "pages-exotic-vegetable-list-exotic-vegetable-list-module").then(__webpack_require__.bind(null, /*! ./pages/exotic-vegetable-list/exotic-vegetable-list.module */ "8d8y")).then((m) => m.ExoticVegetableListPageModule),
     },
     {
-        path: 'exotic-vegetable-detail',
-        loadChildren: () => __webpack_require__.e(/*! import() | pages-exotic-vegetable-detail-exotic-vegetable-detail-module */ "pages-exotic-vegetable-detail-exotic-vegetable-detail-module").then(__webpack_require__.bind(null, /*! ./pages/exotic-vegetable-detail/exotic-vegetable-detail.module */ "4w6b")).then(m => m.ExoticVegetableDetailPageModule)
+        path: "exotic-vegetable-detail",
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-exotic-vegetable-detail-exotic-vegetable-detail-module */ "pages-exotic-vegetable-detail-exotic-vegetable-detail-module").then(__webpack_require__.bind(null, /*! ./pages/exotic-vegetable-detail/exotic-vegetable-detail.module */ "4w6b")).then((m) => m.ExoticVegetableDetailPageModule),
     },
     {
-        path: 'sign-up',
-        loadChildren: () => __webpack_require__.e(/*! import() | pages-sign-up-sign-up-module */ "pages-sign-up-sign-up-module").then(__webpack_require__.bind(null, /*! ./pages/sign-up/sign-up.module */ "J606")).then(m => m.SignUpPageModule)
+        path: "sign-up",
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-sign-up-sign-up-module */ "pages-sign-up-sign-up-module").then(__webpack_require__.bind(null, /*! ./pages/sign-up/sign-up.module */ "J606")).then((m) => m.SignUpPageModule),
     },
     {
-        path: 'thank-you',
-        loadChildren: () => __webpack_require__.e(/*! import() | pages-thank-you-thank-you-module */ "pages-thank-you-thank-you-module").then(__webpack_require__.bind(null, /*! ./pages/thank-you/thank-you.module */ "foAR")).then(m => m.ThankYouPageModule)
+        path: "thank-you",
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-thank-you-thank-you-module */ "pages-thank-you-thank-you-module").then(__webpack_require__.bind(null, /*! ./pages/thank-you/thank-you.module */ "foAR")).then((m) => m.ThankYouPageModule),
     },
     {
-        path: 'profile',
-        loadChildren: () => __webpack_require__.e(/*! import() | pages-profile-profile-module */ "pages-profile-profile-module").then(__webpack_require__.bind(null, /*! ./pages/profile/profile.module */ "723k")).then(m => m.ProfilePageModule)
+        path: "profile",
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-profile-profile-module */ "pages-profile-profile-module").then(__webpack_require__.bind(null, /*! ./pages/profile/profile.module */ "723k")).then((m) => m.ProfilePageModule),
     },
     {
-        path: 'privacy-policy',
-        loadChildren: () => __webpack_require__.e(/*! import() | pages-privacy-policy-privacy-policy-module */ "pages-privacy-policy-privacy-policy-module").then(__webpack_require__.bind(null, /*! ./pages/privacy-policy/privacy-policy.module */ "cjqQ")).then(m => m.PrivacyPolicyPageModule)
+        path: "privacy-policy",
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-privacy-policy-privacy-policy-module */ "pages-privacy-policy-privacy-policy-module").then(__webpack_require__.bind(null, /*! ./pages/privacy-policy/privacy-policy.module */ "cjqQ")).then((m) => m.PrivacyPolicyPageModule),
     },
     {
-        path: 'termsand-condition',
-        loadChildren: () => __webpack_require__.e(/*! import() | pages-termsand-condition-termsand-condition-module */ "pages-termsand-condition-termsand-condition-module").then(__webpack_require__.bind(null, /*! ./pages/termsand-condition/termsand-condition.module */ "Mlt5")).then(m => m.TermsandConditionPageModule)
+        path: "termsand-condition",
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-termsand-condition-termsand-condition-module */ "pages-termsand-condition-termsand-condition-module").then(__webpack_require__.bind(null, /*! ./pages/termsand-condition/termsand-condition.module */ "Mlt5")).then((m) => m.TermsandConditionPageModule),
     },
     {
-        path: 'return-and-refund',
-        loadChildren: () => __webpack_require__.e(/*! import() | pages-return-and-refund-return-and-refund-module */ "pages-return-and-refund-return-and-refund-module").then(__webpack_require__.bind(null, /*! ./pages/return-and-refund/return-and-refund.module */ "MtpV")).then(m => m.ReturnAndRefundPageModule)
+        path: "return-and-refund",
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-return-and-refund-return-and-refund-module */ "pages-return-and-refund-return-and-refund-module").then(__webpack_require__.bind(null, /*! ./pages/return-and-refund/return-and-refund.module */ "MtpV")).then((m) => m.ReturnAndRefundPageModule),
     },
     {
-        path: 'about-us',
-        loadChildren: () => __webpack_require__.e(/*! import() | pages-about-us-about-us-module */ "pages-about-us-about-us-module").then(__webpack_require__.bind(null, /*! ./pages/about-us/about-us.module */ "Yy7G")).then(m => m.AboutUsPageModule)
+        path: "about-us",
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-about-us-about-us-module */ "pages-about-us-about-us-module").then(__webpack_require__.bind(null, /*! ./pages/about-us/about-us.module */ "Yy7G")).then((m) => m.AboutUsPageModule),
     },
     {
-        path: 'view-all',
-        loadChildren: () => __webpack_require__.e(/*! import() | pages-view-all-view-all-module */ "pages-view-all-view-all-module").then(__webpack_require__.bind(null, /*! ./pages/view-all/view-all.module */ "Y5g3")).then(m => m.ViewAllPageModule)
+        path: "view-all",
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-view-all-view-all-module */ "pages-view-all-view-all-module").then(__webpack_require__.bind(null, /*! ./pages/view-all/view-all.module */ "Y5g3")).then((m) => m.ViewAllPageModule),
     },
     {
-        path: 'coupon-pop-over',
-        loadChildren: () => Promise.all(/*! import() | pages-coupon-pop-over-coupon-pop-over-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-coupon-pop-over-coupon-pop-over-module")]).then(__webpack_require__.bind(null, /*! ./pages/coupon-pop-over/coupon-pop-over.module */ "QviG")).then(m => m.CouponPopOverPageModule)
+        path: "coupon-pop-over",
+        loadChildren: () => Promise.all(/*! import() | pages-coupon-pop-over-coupon-pop-over-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-coupon-pop-over-coupon-pop-over-module")]).then(__webpack_require__.bind(null, /*! ./pages/coupon-pop-over/coupon-pop-over.module */ "QviG")).then((m) => m.CouponPopOverPageModule),
     },
 ];
 let AppRoutingModule = class AppRoutingModule {

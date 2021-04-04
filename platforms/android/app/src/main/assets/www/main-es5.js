@@ -17,7 +17,7 @@
     /***/
     function _(module, exports, __webpack_require__) {
       module.exports = __webpack_require__(
-      /*! /Users/shantamsharma/Downloads/freshofastIos-master/src/main.ts */
+      /*! /Users/shantamsharma/Desktop/untitled folder 3/freshofastIos-master/src/main.ts */
       "zUnb");
       /***/
     },
@@ -133,6 +133,12 @@
       var _angular_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
       /*! @angular/router */
       "tyNb");
+      /* harmony import */
+
+
+      var _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+      /*! @ionic-native/http/ngx */
+      "XSEc");
 
       var AppComponent = /*#__PURE__*/function () {
         function AppComponent(platform, splashScreen, statusBar, http, route, loadingController, alertCtrl, toastctrl) {
@@ -229,7 +235,10 @@
                 Authorization: "Basic " + btoa("".concat(localStorage.getItem("username"), ":").concat(localStorage.getItem("password")))
               })
             };
-            this.http.post("https://freshofast.com/wp-json/cocart/v1/logout", httpOptions).subscribe(function (res) {
+            this.http.post("https://freshofast.com/wp-json/cocart/v1/logout", {}, {
+              Authorization: "Basic " + btoa("".concat(localStorage.getItem("username"), ":").concat(localStorage.getItem("password"))),
+              "Content-Type": "application/json"
+            }).then(function (res) {
               var response = res;
 
               _this2.dismiss();
@@ -313,7 +322,7 @@
         }, {
           type: _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"]
         }, {
-          type: _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpClient"]
+          type: _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_9__["HTTP"]
         }, {
           type: _angular_router__WEBPACK_IMPORTED_MODULE_8__["Router"]
         }, {
@@ -443,24 +452,13 @@
 
       var _ionic_native_app_launcher_ngx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
       /*! @ionic-native/app-launcher/ngx */
-      "03aV"); //import { ServService } from "src/app/services/serv.service";
-      //import  { paytmchecksum } from "paytmchecksum";
-      // import {
-      //   Plugin,
-      //   Cordova,
-      //   CordovaProperty,
-      //   CordovaInstance,
-      //   InstanceProperty,
-      //   IonicNativePlugin,
-      // } from "@ionic-native/core";
-      // @Plugin({
-      //   pluginName: "AllInOneSDK",
-      //   plugin: "cordova-paytm-allinonesdk",
-      //   pluginRef: "AllInOneSDK",
-      //   repo: "https://github.com/paytm/paytm-allinonesdk-ionic-cordova.git",
-      //   platforms: ["Android", "iOS"],
-      // })
+      "03aV");
+      /* harmony import */
 
+
+      var _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+      /*! @ionic-native/http/ngx */
+      "XSEc");
 
       var AppModule = function AppModule() {
         _classCallCheck(this, AppModule);
@@ -470,13 +468,14 @@
         declarations: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]],
         entryComponents: [],
         imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_9__["HttpClientModule"]],
-        providers: [_ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"], _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"], _ionic_native_all_in_one_sdk_ngx__WEBPACK_IMPORTED_MODULE_10__["AllInOneSDK"], _ionic_native_app_launcher_ngx__WEBPACK_IMPORTED_MODULE_11__["AppLauncher"], // ServService,
-        {
+        providers: [_ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"], _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"], _ionic_native_all_in_one_sdk_ngx__WEBPACK_IMPORTED_MODULE_10__["AllInOneSDK"], _ionic_native_app_launcher_ngx__WEBPACK_IMPORTED_MODULE_11__["AppLauncher"], _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_12__["HTTP"], {
           provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"],
           useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"]
         }],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
-      })], AppModule);
+      })], AppModule); // password jar signed
+      //India@12345
+
       /***/
     },
 

@@ -123,6 +123,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ "TEn/");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common/http */ "tk/3");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ "tyNb");
+/* harmony import */ var _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic-native/http/ngx */ "XSEc");
+
 
 
 
@@ -132,8 +134,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let HomePage = class HomePage {
-    constructor(http, route, loadingController, alertCtrl, popoverController) {
+    constructor(http, httpplugin, route, loadingController, alertCtrl, popoverController) {
         this.http = http;
+        this.httpplugin = httpplugin;
         this.route = route;
         this.loadingController = loadingController;
         this.alertCtrl = alertCtrl;
@@ -214,6 +217,9 @@ let HomePage = class HomePage {
                 console.log("api  data ", response);
             });
         }
+        else {
+            this.cartdata();
+        }
     }
     presentLoading() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
@@ -270,15 +276,21 @@ let HomePage = class HomePage {
                 Authorization: "Basic " + btoa("freshofast:Freshofast@#2020"),
             }),
         };
-        this.http
-            .get("https://freshofast.com/wp-json/wc/v3/coupons", 
+        this.httpplugin
+            .get("https://freshofast.com/wp-json/wc/v3/coupons", {}, 
         //{
-        httpOptions
+        {
+            Authorization: "Basic " + btoa("freshofast:Freshofast@#2020"),
+            "Content-Type": "application/json",
+        }
         //}
         )
-            .subscribe((data) => {
+            .then((data) => {
+            var val = data.data;
+            var b = val.replace(/^\s+/g, "");
+            var c = JSON.parse(b);
             console.log(" couponsuccess", data);
-            var a = data;
+            var a = c;
             this.presentPopover(a[0].code, a[0].amount);
             localStorage.setItem("coupon", a[0].code);
             localStorage.setItem("couponamount", a[0].amount);
@@ -290,9 +302,9 @@ let HomePage = class HomePage {
         });
     }
     variationlist() {
-        this.http
-            .get("https://freshofast.com/wp-json/public-woo/v3/products/4667/variations/")
-            .subscribe((res) => {
+        this.httpplugin
+            .get("https://freshofast.com/wp-json/public-woo/v3/products/4667/variations/", {}, {})
+            .then((res) => {
             var response = res;
             this.dismiss();
             console.log("variation  data ", response);
@@ -322,21 +334,28 @@ let HomePage = class HomePage {
                         variation_id: value.quantity[i].variation_id,
                     };
                     console.log("if condition", value.quantity[i].weight, this.value);
-                    this.http
+                    //var req = encodeURIComponent(JSON.stringify(body));
+                    console.log("body------", body);
+                    this.httpplugin.setDataSerializer("json");
+                    this.httpplugin
                         .post("https://freshofast.com/wp-json/cocart/v1/add-item", 
                     //{
-                    body, httpOptions
+                    body, {
+                        Authorization: "Basic " +
+                            btoa(`${localStorage.getItem("username")}:${localStorage.getItem("password")}`),
+                        "Content-Type": "application/json",
+                    }
                     //}
                     )
-                        .subscribe((data) => {
-                        console.log("success", data);
+                        .then((data) => {
+                        console.log("success", JSON.stringify(data));
                         this.cartdata();
                         // this.Additem = this.Additem + 1;
                         // localStorage.setItem("addedItem", this.Additem.toString());
                         this.addcardtoast();
                         // this.dismiss();
                     }, (error) => {
-                        console.log("oops", error);
+                        console.log("oops", JSON.stringify(error));
                         alert("Out of Stock");
                         this.dismiss();
                     });
@@ -370,16 +389,22 @@ let HomePage = class HomePage {
                         quantity: value.quantity[i].min_qty,
                         variation_id: value.quantity[i].variation_id,
                     };
-                    console.log("if condition", value.quantity[i].weight, this.value);
-                    this.http
+                    console.log("if condition", value.quantity[i].weight, this.value, body);
+                    this.httpplugin.setDataSerializer("json");
+                    this.httpplugin
                         .post("https://freshofast.com/wp-json/cocart/v1/add-item", 
                     //{
-                    body, httpOptions
+                    body, {
+                        Authorization: "Basic " +
+                            btoa(`${localStorage.getItem("username")}:${localStorage.getItem("password")}`),
+                        "Content-Type": "application/json",
+                    }
                     //}
                     )
-                        .subscribe((data) => {
+                        .then((data) => {
                         console.log("success", data);
                         this.cartdata();
+                        this.addcardtoast();
                         // this.Additem = this.Additem + 1;
                         // localStorage.setItem("addedItem", this.Additem.toString());
                         // this.dismiss();
@@ -416,10 +441,18 @@ let HomePage = class HomePage {
                     btoa(`${localStorage.getItem("username")}:${localStorage.getItem("password")}`),
             }),
         };
-        this.http
-            .get("https://freshofast.com/wp-json/cocart/v1/get-cart", httpOptions)
-            .subscribe((res) => {
-            var response = res;
+        this.httpplugin
+            .get("https://freshofast.com/wp-json/cocart/v1/get-cart", {}, {
+            Authorization: "Basic " +
+                btoa(`${localStorage.getItem("username")}:${localStorage.getItem("password")}`),
+            "Content-Type": "application/json",
+        })
+            .then((res) => {
+            var val = res.data;
+            var b = val.replace(/^\s+/g, "");
+            var c = JSON.parse(b);
+            console.log("resssssss", c);
+            var response = c;
             //this.dismiss();
             // this.cartlist = res;
             console.log("res data ", response.length, this.cartflag);
@@ -453,6 +486,7 @@ let HomePage = class HomePage {
 };
 HomePage.ctorParameters = () => [
     { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClient"] },
+    { type: _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_8__["HTTP"] },
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["LoadingController"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["AlertController"] },

@@ -11,7 +11,7 @@ export class LocationPage implements OnInit {
     this.popover = popover;
   }
   ngOnInit() {}
-  ClosePopover(value) {
+  ClosePopover(value: any) {
     if (value) {
       console.log(value);
       this.popover.dismiss();

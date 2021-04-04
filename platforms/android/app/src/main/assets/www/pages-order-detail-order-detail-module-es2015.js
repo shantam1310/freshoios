@@ -76,6 +76,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ "TEn/");
 /* harmony import */ var _ionic_native_all_in_one_sdk_ngx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic-native/all-in-one-sdk/ngx */ "ptCa");
 /* harmony import */ var _ionic_native_app_launcher_ngx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic-native/app-launcher/ngx */ "03aV");
+/* harmony import */ var _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ionic-native/http/ngx */ "XSEc");
 
 
 
@@ -88,14 +89,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 // declare var paytm: any;
 let OrderDetailPage = class OrderDetailPage {
-    constructor(http, route, loadingController, 
+    constructor(http, HttpClient, route, loadingController, 
     // private alertCtrl: AlertController,
     // private popoverController: PopoverController,
     serv, allInOneSDK, appLauncher, platform // private checksum: paytmchecksum
     ) {
         this.http = http;
+        this.HttpClient = HttpClient;
         this.route = route;
         this.loadingController = loadingController;
         this.serv = serv;
@@ -152,10 +155,18 @@ let OrderDetailPage = class OrderDetailPage {
                     Authorization: "Basic " + btoa("freshofast:Freshofast@#2020"),
                 }),
             };
+            this.http.setDataSerializer("json");
             this.http
-                .put(`https://freshofast.com/wp-json/wc/v3/customers/${localStorage.getItem("profileId")}`, body, httpOptions)
-                .subscribe((data) => {
-                console.log("profile success", data);
+                .post(`https://freshofast.com/wp-json/wc/v3/customers/${localStorage.getItem("profileId")}`, body, {
+                Authorization: "Basic " + btoa("freshofast:Freshofast@#2020"),
+                "Content-Type": "application/json",
+            })
+                .then((data) => {
+                var val = data.data;
+                var b = val.replace(/^\s+/g, "");
+                var c = JSON.parse(b);
+                console.log("resssssss", c);
+                console.log("order detail success", c);
                 // this.user_detail();
                 this.dismiss();
             }, (error) => {
@@ -251,21 +262,30 @@ let OrderDetailPage = class OrderDetailPage {
                     ],
                 };
                 console.log("order body data ", body);
+                this.http.setDataSerializer("json");
                 this.http
                     .post("https://freshofast.com//wp-json/wc/v3/orders", 
                 //{
-                body, httpOptions
+                body, {
+                    Authorization: "Basic " + btoa("freshofast:Freshofast@#2020"),
+                    "Content-Type": "application/json",
+                }
                 //}
                 )
-                    .subscribe((res) => {
-                    var response = res;
+                    .then((res) => {
+                    console.log("order up res ", res);
+                    var val = res.data;
+                    var b = val.replace(/^\s+/g, "");
+                    var c = JSON.parse(b);
+                    console.log("cccccc", res);
+                    var response = c;
+                    console.log("order up data ", c);
                     // this.Paytm();
                     //this.transtoken();
                     this.intiatetxn(response.id);
                     this.updateprofile();
                     //this.dismiss();
                     //  this.route.navigate(["/thank-you"]);
-                    console.log("order up data ", response);
                     this.orderid = response.id;
                     this.amount = response.total;
                     this.customer_id = response.customer_id;
@@ -326,14 +346,24 @@ let OrderDetailPage = class OrderDetailPage {
                     ],
                 };
                 console.log("order body data ", body);
+                this.http.setDataSerializer("json");
                 this.http
                     .post("https://freshofast.com//wp-json/wc/v3/orders", 
                 //{
-                body, httpOptions
+                body, {
+                    Authorization: "Basic " + btoa("freshofast:Freshofast@#2020"),
+                    "Content-Type": "application/json",
+                }
                 //}
                 )
-                    .subscribe((res) => {
-                    var response = res;
+                    .then((res) => {
+                    // var response: any = res;
+                    console.log("order up res ", res);
+                    var val = res.data;
+                    var b = val.replace(/^\s+/g, "");
+                    var c = JSON.parse(b);
+                    console.log("cccccc", res);
+                    var response = c;
                     this.updateprofile();
                     // this.Paytm();
                     //this.transtoken();
@@ -423,14 +453,24 @@ let OrderDetailPage = class OrderDetailPage {
                     ],
                 };
                 console.log("order body data ", body);
+                this.http.setDataSerializer("json");
                 this.http
                     .post("https://freshofast.com//wp-json/wc/v3/orders", 
                 //{
-                body, httpOptions
+                body, {
+                    Authorization: "Basic " + btoa("freshofast:Freshofast@#2020"),
+                    "Content-Type": "application/json",
+                }
                 //}
                 )
-                    .subscribe((res) => {
-                    var response = res;
+                    .then((res) => {
+                    // var response: any = res;
+                    console.log("order up res ", res);
+                    var val = res.data;
+                    var b = val.replace(/^\s+/g, "");
+                    var c = JSON.parse(b);
+                    console.log("cccccc", res);
+                    var response = c;
                     this.updateprofile();
                     // this.Paytm();
                     //this.transtoken();
@@ -498,14 +538,24 @@ let OrderDetailPage = class OrderDetailPage {
                     ],
                 };
                 console.log("order body data ", body);
+                this.http.setDataSerializer("json");
                 this.http
                     .post("https://freshofast.com//wp-json/wc/v3/orders", 
                 //{
-                body, httpOptions
+                body, {
+                    Authorization: "Basic " + btoa("freshofast:Freshofast@#2020"),
+                    "Content-Type": "application/json",
+                }
                 //}
                 )
-                    .subscribe((res) => {
-                    var response = res;
+                    .then((res) => {
+                    // var response: any = res;
+                    console.log("order up res ", res);
+                    var val = res.data;
+                    var b = val.replace(/^\s+/g, "");
+                    var c = JSON.parse(b);
+                    console.log("cccccc", res);
+                    var response = c;
                     this.updateprofile();
                     // this.Paytm();
                     //this.transtoken();
@@ -580,14 +630,21 @@ let OrderDetailPage = class OrderDetailPage {
             }),
         };
         this.http
-            .get("https://freshofast.com/wp-json/wc/v3/coupons", 
+            .get("https://freshofast.com/wp-json/wc/v3/coupons", {}, 
         //{
-        httpOptions
+        {
+            Authorization: "Basic " + btoa("freshofast:Freshofast@#2020"),
+            "Content-Type": "application/json",
+        }
         //}
         )
-            .subscribe((data) => {
+            .then((data) => {
             console.log(" couponsuccess", data);
-            this.coupon = data;
+            var val = data.data;
+            var b = val.replace(/^\s+/g, "");
+            var c = JSON.parse(b);
+            console.log("resssssss", c);
+            this.coupon = c;
             this.dismiss();
         }, (error) => {
             console.log("oops", error);
@@ -624,9 +681,17 @@ let OrderDetailPage = class OrderDetailPage {
             }),
         };
         this.http
-            .get("https://freshofast.com/wp-json/cocart/v1/get-cart", httpOptions)
-            .subscribe((res) => {
-            var response = res;
+            .get("https://freshofast.com/wp-json/cocart/v1/get-cart", {}, {
+            Authorization: "Basic " +
+                btoa(`${localStorage.getItem("username")}:${localStorage.getItem("password")}`),
+            "Content-Type": "application/json",
+        })
+            .then((res) => {
+            var val = res.data;
+            var b = val.replace(/^\s+/g, "");
+            var c = JSON.parse(b);
+            console.log("resssssss", c);
+            var response = c;
             //this.dismiss();
             // this.cartlist = res;
             for (var propName in response) {
@@ -670,12 +735,20 @@ let OrderDetailPage = class OrderDetailPage {
                 Authorization: "Basic " + btoa("freshofast:Freshofast@#2020"),
             }),
         };
+        var url = `https://freshofast.com/wp-json/wc/v3/customers/${localStorage.getItem("profileId")}`;
+        console.log("url.......", url);
         this.http
-            .get(`https://freshofast.com/wp-json/wc/v3/customers/${localStorage.getItem("profileId")}`, httpOptions)
-            .subscribe((data) => {
-            console.log("success", data);
-            var response = data;
-            this.profiledata = data;
+            .get(url, {}, {
+            Authorization: "Basic " + btoa("freshofast:Freshofast@#2020"),
+            "Content-Type": "application/json",
+        })
+            .then((data) => {
+            var val = data.data;
+            var b = val.replace(/^\s+/g, "");
+            var c = JSON.parse(b);
+            console.log("cccccc", c);
+            var response = c;
+            this.profiledata = c;
             this.mail = response.email;
             this.last_name = response.last_name;
             this.user_name = response.first_name;
@@ -726,12 +799,17 @@ let OrderDetailPage = class OrderDetailPage {
             }),
         };
         this.http
-            .get("https://freshofast.com/wp-json/cocart/v1/totals", httpOptions)
-            .subscribe((res) => {
-            var item = res;
-            this.cost = res;
-            var item = res;
-            this.cost = res;
+            .get("https://freshofast.com/wp-json/cocart/v1/totals", {}, {
+            Authorization: "Basic " +
+                btoa(`${localStorage.getItem("username")}:${localStorage.getItem("password")}`),
+            "Content-Type": "application/json",
+        })
+            .then((res) => {
+            var val = res.data;
+            var b = val.replace(/^\s+/g, "");
+            var c = JSON.parse(b);
+            console.log("resssssss", c);
+            this.cost = c;
             var total = parseInt(this.cost.total);
             //  var amount=parseInt(this.coupon_anount);
             var total1 = total - this.couponamount;
@@ -779,9 +857,7 @@ let OrderDetailPage = class OrderDetailPage {
             userInfo: userinfo,
         };
         console.log("body,", body2);
-        this.http
-            .post(`https://securegw-stage.paytm.in/theia/api/v1/initiateTransaction?mid=craEqC85803650824145&orderId=${this.orderid}`, body2)
-            .subscribe((data) => {
+        this.HttpClient.post(`https://securegw-stage.paytm.in/theia/api/v1/initiateTransaction?mid=craEqC85803650824145&orderId=${this.orderid}`, body2).subscribe((data) => {
             // console.log("success", data);
             console.log("transaction token", data);
             //this.user_detail();
@@ -799,7 +875,7 @@ let OrderDetailPage = class OrderDetailPage {
     paytmsignature() {
         const body = { order_id: this.orderid };
         //console.log("transaction token222");
-        this.http.post("http://freshofast.com/paytmdemo/index.php", body).subscribe((data) => {
+        this.HttpClient.post("http://freshofast.com/paytmdemo/index.php", body).subscribe((data) => {
             // console.log("success", data);
             this.signature = data;
             console.log("transaction token", this.signature);
@@ -935,9 +1011,7 @@ let OrderDetailPage = class OrderDetailPage {
         // formData.append("CUST_ID", localStorage.getItem("profileId"));
         // formData.append("TXN_AMOUNT", localStorage.getItem("Grand_Total"));
         //http://freshofast.com/paytmcheck/TxnTest.php
-        this.http
-            .post("http://freshofast.com/paytmcheck/Paytm_PHP_Checksum-master/paymentstatus.php", formData)
-            .subscribe((data) => {
+        this.HttpClient.post("http://freshofast.com/paytmcheck/Paytm_PHP_Checksum-master/paymentstatus.php", formData).subscribe((data) => {
             var res = data;
             console.log("paytm statsu", res.body.resultInfo.resultStatus, data);
             alert("Payment" + res.body.resultInfo.resultStatus);
@@ -957,9 +1031,7 @@ let OrderDetailPage = class OrderDetailPage {
             formData.append("CUST_ID", localStorage.getItem("profileId"));
             formData.append("TXN_AMOUNT", this.paytmcouponamount);
             //http://freshofast.com/paytmcheck/TxnTest.php
-            this.http
-                .post("http://freshofast.com/paytmcheck/Paytm_PHP_Checksum-master/paytmfinalcheck.php", formData)
-                .subscribe((data) => {
+            this.HttpClient.post("http://freshofast.com/paytmcheck/Paytm_PHP_Checksum-master/paytmfinalcheck.php", formData).subscribe((data) => {
                 console.log("paytm sucess", data);
                 var token = data;
                 var txn = token.body.txnToken;
@@ -977,9 +1049,7 @@ let OrderDetailPage = class OrderDetailPage {
             formData.append("CUST_ID", localStorage.getItem("profileId"));
             formData.append("TXN_AMOUNT", localStorage.getItem("Grand_Total"));
             //http://freshofast.com/paytmcheck/TxnTest.php
-            this.http
-                .post("http://freshofast.com/paytmcheck/Paytm_PHP_Checksum-master/paytmfinalcheck.php", formData)
-                .subscribe((data) => {
+            this.HttpClient.post("http://freshofast.com/paytmcheck/Paytm_PHP_Checksum-master/paytmfinalcheck.php", formData).subscribe((data) => {
                 console.log("paytm sucess", data);
                 var token = data;
                 var txn = token.body.txnToken;
@@ -994,6 +1064,7 @@ let OrderDetailPage = class OrderDetailPage {
     }
 };
 OrderDetailPage.ctorParameters = () => [
+    { type: _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_10__["HTTP"] },
     { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"] },
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["LoadingController"] },

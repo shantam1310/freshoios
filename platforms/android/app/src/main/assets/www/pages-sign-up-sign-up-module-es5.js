@@ -240,6 +240,12 @@
       var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
       /*! @ionic/angular */
       "TEn/");
+      /* harmony import */
+
+
+      var _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! @ionic-native/http/ngx */
+      "XSEc");
 
       var SignUpPage = /*#__PURE__*/function () {
         function SignUpPage(http, route, loadingController, popoverController) {
@@ -284,9 +290,13 @@
                   roles: "customer"
                 };
                 console.log("form data ", body);
+                this.http.setDataSerializer("json");
                 this.http.post("https://freshofast.com/wp-json/wp/v2/users", //{
-                body, httpOptions //}
-                ).subscribe(function (data) {
+                body, {
+                  Authorization: "Basic " + btoa("freshofast:Freshofast@#2020"),
+                  "Content-Type": "application/json"
+                } //}
+                ).then(function (data) {
                   console.log("success", data);
                   console.log("sign up data ", data);
 
@@ -395,7 +405,7 @@
 
       SignUpPage.ctorParameters = function () {
         return [{
-          type: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]
+          type: _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_7__["HTTP"]
         }, {
           type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]
         }, {

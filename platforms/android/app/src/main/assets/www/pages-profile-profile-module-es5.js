@@ -180,12 +180,19 @@
       var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
       /*! @ionic/angular */
       "TEn/");
+      /* harmony import */
+
+
+      var _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! @ionic-native/http/ngx */
+      "XSEc");
 
       var ProfilePage = /*#__PURE__*/function () {
-        function ProfilePage(http, route, loadingController, popoverController) {
+        function ProfilePage(http, httpplugin, route, loadingController, popoverController) {
           _classCallCheck(this, ProfilePage);
 
           this.http = http;
+          this.httpplugin = httpplugin;
           this.route = route;
           this.loadingController = loadingController;
           this.popoverController = popoverController;
@@ -217,10 +224,20 @@
                 Authorization: "Basic " + btoa("freshofast:Freshofast@#2020")
               })
             };
-            this.http.get("https://freshofast.com/wp-json/wc/v3/customers/".concat(localStorage.getItem("profileId")), httpOptions).subscribe(function (data) {
-              console.log("success", data);
-              var response = data;
-              _this.profiledata = data;
+            var url = "https://freshofast.com/wp-json/wc/v3/customers/".concat(localStorage.getItem("profileId"));
+            console.log("url......", url);
+            this.httpplugin.get(url, {}, {
+              Authorization: "Basic " + btoa("freshofast:Freshofast@#2020"),
+              "Content-Type": "application/json"
+            }).then(function (data) {
+              var r = encodeURIComponent(JSON.stringify(data));
+              console.log("success profile", encodeURIComponent(JSON.stringify(data)));
+              var val = data.data;
+              var b = val.replace(/^\s+/g, "");
+              var c = JSON.parse(b);
+              console.log("cccccc", c);
+              var response = c;
+              _this.profiledata = c;
               _this.mail = response.email;
               _this.last_name = response.last_name;
               _this.user_name = response.first_name; //this.first_name
@@ -282,13 +299,39 @@
                   Authorization: "Basic " + btoa("freshofast:Freshofast@#2020")
                 })
               };
-              this.http.put("https://freshofast.com/wp-json/wc/v3/customers/".concat(localStorage.getItem("profileId")), body, httpOptions).subscribe(function (data) {
+              var url = "https://freshofast.com/wp-json/wc/v3/customers/".concat(localStorage.getItem("profileId"));
+              console.log("url......", url);
+              this.httpplugin.setDataSerializer("json");
+              this.httpplugin.put(url, {
+                email: this.mail,
+                first_name: this.user_name,
+                last_name: this.last_name,
+                //role: "administrator",
+                // username: this.user_name,
+                billing: {
+                  first_name: this.user_name,
+                  last_name: this.last_name,
+                  address_1: this.address_1,
+                  city: this.city,
+                  state: this.state,
+                  postcode: this.postcode,
+                  country: " ",
+                  email: this.mail,
+                  phone: this.phone
+                }
+              }, {
+                Authorization: "Basic " + btoa("freshofast:Freshofast@#2020"),
+                "Content-Type": "application/json"
+              }).then(function (data) {
                 console.log("success", data); // this.user_detail();
 
                 _this2.dismiss();
               }, function (error) {
-                console.log("oops", error);
-                alert("Credential is wrong");
+                var val = error.error;
+                var b = val.replace(/^\s+/g, "");
+                var c = JSON.parse(b);
+                console.log("cccccc", c);
+                alert("No updation");
 
                 _this2.dismiss();
               } //   (res) => {
@@ -300,6 +343,7 @@
               // }
               );
             } else {
+              this.dismiss();
               alert(" Please Fill all credential");
             }
           }
@@ -368,6 +412,8 @@
       ProfilePage.ctorParameters = function () {
         return [{
           type: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]
+        }, {
+          type: _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_7__["HTTP"]
         }, {
           type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]
         }, {

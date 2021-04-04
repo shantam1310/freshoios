@@ -33,11 +33,11 @@ export class CheckoutPagePage implements OnInit {
   //https://freshofast.com/wp-json/cocart/v1/get-cart
   //https://example.com/wp-json/cocart/v1/item
   ngOnInit() {}
-  myFunction(value) {
+  myFunction(value: any) {
     this.quantity = value;
     console.log("value", value);
   }
-  updateitem(key) {
+  updateitem(key: any) {
     this.presentLoading();
     if (this.quantity) {
       const httpOptions = {
@@ -82,7 +82,7 @@ export class CheckoutPagePage implements OnInit {
     this.dismiss();
     ///wp-json/cocart/v1/item
   }
-  deleteitem(key) {
+  deleteitem(key: any) {
     this.presentLoading();
     const options = {
       headers: new HttpHeaders({
@@ -146,7 +146,7 @@ export class CheckoutPagePage implements OnInit {
     this.presentLoading();
     this.cartdata();
   }
-  doRefresh(event) {
+  doRefresh(event: any) {
     console.log("doRefresh...");
     this.cartdata();
     event.target.complete();
@@ -226,7 +226,7 @@ export class CheckoutPagePage implements OnInit {
       this.dismiss();
     }
   }
-  quanity(value) {
+  quanity(value: any) {
     this.value = value;
     console.log("valueeee  ", value);
   }
@@ -291,11 +291,11 @@ export class CheckoutPagePage implements OnInit {
         console.log("costing", this.cost);
       });
   }
-  increment(index) {
+  increment(index: any) {
     this.cartlist[index].quantity = this.cartlist[index].quantity + 1;
     this.quantity = this.cartlist[index].quantity;
   }
-  decrement(index) {
+  decrement(index: any) {
     this.cartlist[index].quantity = this.cartlist[index].quantity - 1;
     this.quantity = this.cartlist[index].quantity;
   }
@@ -328,7 +328,7 @@ export class CheckoutPagePage implements OnInit {
     // });
     // toast.present();
   }
-  additem(value, index, weight) {
+  additem(value: any, index: any, weight: any) {
     if (this.value) {
       // this.value = weight;
       this.presentLoading();
@@ -466,7 +466,7 @@ export class CheckoutPagePage implements OnInit {
       alert("Please Select the quantity");
     }
   }
-  slidesDidLoad(slides) {
+  slidesDidLoad(slides: any) {
     slides.startAutoplay();
   }
 }

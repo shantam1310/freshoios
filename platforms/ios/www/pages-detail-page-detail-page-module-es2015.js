@@ -244,121 +244,126 @@ let DetailPagePage = class DetailPagePage {
     }
     ngOnInit() { }
     additem(value, weight) {
-        if (this.value) {
-            // this.value = weight;
-            this.presentLoading();
-            // document.getElementById("mySelect").value
-            console.log("add item", value.quantity);
-            //https://freshofast.com/wp-json/cocart/v1/add-item
-            localStorage.getItem("username");
-            localStorage.getItem("password");
-            const httpOptions = {
-                headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
-                    "Content-Type": "application/json",
-                    Authorization: "Basic " +
-                        btoa(`${localStorage.getItem("username")}:${localStorage.getItem("password")}`),
-                }),
-            };
-            for (var i = 0; i <= value.quantity.length - 1; i++) {
-                if (value.quantity[i].weight == this.value) {
-                    const body = {
-                        product_id: value.id.toString(),
-                        quantity: value.quantity[i].min_qty,
-                        variation_id: value.quantity[i].variation_id,
-                    };
-                    console.log("if condition", value.quantity[i].weight, this.value);
-                    this.httpplugin.setDataSerializer("json");
-                    this.httpplugin
-                        .post("https://freshofast.com/wp-json/cocart/v1/add-item", 
-                    //{
-                    body, {
+        if (localStorage.getItem("login")) {
+            if (this.value) {
+                // this.value = weight;
+                this.presentLoading();
+                // document.getElementById("mySelect").value
+                console.log("add item", value.quantity);
+                //https://freshofast.com/wp-json/cocart/v1/add-item
+                localStorage.getItem("username");
+                localStorage.getItem("password");
+                const httpOptions = {
+                    headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
+                        "Content-Type": "application/json",
                         Authorization: "Basic " +
                             btoa(`${localStorage.getItem("username")}:${localStorage.getItem("password")}`),
-                        "Content-Type": "application/json",
+                    }),
+                };
+                for (var i = 0; i <= value.quantity.length - 1; i++) {
+                    if (value.quantity[i].weight == this.value) {
+                        const body = {
+                            product_id: value.id.toString(),
+                            quantity: value.quantity[i].min_qty,
+                            variation_id: value.quantity[i].variation_id,
+                        };
+                        console.log("if condition", value.quantity[i].weight, this.value);
+                        this.httpplugin.setDataSerializer("json");
+                        this.httpplugin
+                            .post("https://freshofast.com/wp-json/cocart/v1/add-item", 
+                        //{
+                        body, {
+                            Authorization: "Basic " +
+                                btoa(`${localStorage.getItem("username")}:${localStorage.getItem("password")}`),
+                            "Content-Type": "application/json",
+                        }
+                        //}
+                        )
+                            .then((data) => {
+                            console.log("success", data);
+                            this.cartdata();
+                            // this.Additem = this.Additem + 1;
+                            // localStorage.setItem("addedItem", this.Additem.toString());
+                            this.addcardtoast();
+                            this.dismiss();
+                        }, (error) => {
+                            console.log("oops", error);
+                            alert("Out of Stock");
+                            this.dismiss();
+                        });
                     }
-                    //}
-                    )
-                        .then((data) => {
-                        console.log("success", data);
-                        this.cartdata();
-                        // this.Additem = this.Additem + 1;
-                        // localStorage.setItem("addedItem", this.Additem.toString());
-                        this.addcardtoast();
+                    else {
                         this.dismiss();
-                    }, (error) => {
-                        console.log("oops", error);
-                        alert("Out of Stock");
-                        this.dismiss();
-                    });
+                        console.log("else condition", value.quantity[i].weight, this.value);
+                    }
                 }
-                else {
-                    this.dismiss();
-                    console.log("else condition", value.quantity[i].weight, this.value);
-                }
+                this.value = null;
             }
-            this.value = null;
-        }
-        else if (weight) {
-            console.log("else if");
-            this.value = weight;
-            // this.value = weight;
-            this.presentLoading();
-            // document.getElementById("mySelect").value
-            console.log("add item", value.quantity);
-            //https://freshofast.com/wp-json/cocart/v1/add-item
-            localStorage.getItem("username");
-            localStorage.getItem("password");
-            const httpOptions = {
-                headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
-                    "Content-Type": "application/json",
-                    Authorization: "Basic " +
-                        btoa(`${localStorage.getItem("username")}:${localStorage.getItem("password")}`),
-                }),
-            };
-            for (var i = 0; i <= value.quantity.length - 1; i++) {
-                if (value.quantity[i].weight == this.value) {
-                    const body = {
-                        product_id: value.id.toString(),
-                        quantity: value.quantity[i].min_qty,
-                        variation_id: value.quantity[i].variation_id,
-                    };
-                    console.log("if condition", value.quantity[i].weight, this.value);
-                    this.httpplugin.setDataSerializer("json");
-                    this.httpplugin
-                        .post("https://freshofast.com/wp-json/cocart/v1/add-item", 
-                    //{
-                    body, {
+            else if (weight) {
+                console.log("else if");
+                this.value = weight;
+                // this.value = weight;
+                this.presentLoading();
+                // document.getElementById("mySelect").value
+                console.log("add item", value.quantity);
+                //https://freshofast.com/wp-json/cocart/v1/add-item
+                localStorage.getItem("username");
+                localStorage.getItem("password");
+                const httpOptions = {
+                    headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
+                        "Content-Type": "application/json",
                         Authorization: "Basic " +
                             btoa(`${localStorage.getItem("username")}:${localStorage.getItem("password")}`),
-                        "Content-Type": "application/json",
+                    }),
+                };
+                for (var i = 0; i <= value.quantity.length - 1; i++) {
+                    if (value.quantity[i].weight == this.value) {
+                        const body = {
+                            product_id: value.id.toString(),
+                            quantity: value.quantity[i].min_qty,
+                            variation_id: value.quantity[i].variation_id,
+                        };
+                        console.log("if condition", value.quantity[i].weight, this.value);
+                        this.httpplugin.setDataSerializer("json");
+                        this.httpplugin
+                            .post("https://freshofast.com/wp-json/cocart/v1/add-item", 
+                        //{
+                        body, {
+                            Authorization: "Basic " +
+                                btoa(`${localStorage.getItem("username")}:${localStorage.getItem("password")}`),
+                            "Content-Type": "application/json",
+                        }
+                        //}
+                        )
+                            .then((data) => {
+                            console.log("success", data);
+                            this.cartdata();
+                            this.addcardtoast();
+                            // this.Additem = this.Additem + 1;
+                            // localStorage.setItem("addedItem", this.Additem.toString());
+                            this.addcardtoast();
+                            this.dismiss();
+                        }, (error) => {
+                            console.log("oops", error);
+                            alert("Out of Stock");
+                            this.dismiss();
+                        });
                     }
-                    //}
-                    )
-                        .then((data) => {
-                        console.log("success", data);
-                        this.cartdata();
-                        this.addcardtoast();
-                        // this.Additem = this.Additem + 1;
-                        // localStorage.setItem("addedItem", this.Additem.toString());
-                        this.addcardtoast();
+                    else {
                         this.dismiss();
-                    }, (error) => {
-                        console.log("oops", error);
-                        alert("Out of Stock");
-                        this.dismiss();
-                    });
+                        console.log("else condition", value.quantity[i].weight, this.value);
+                    }
                 }
-                else {
-                    this.dismiss();
-                    console.log("else condition", value.quantity[i].weight, this.value);
-                }
+                this.value = null;
             }
-            this.value = null;
+            else {
+                this.dismiss();
+                console.log("else");
+                // alert("Please Select the quantity");
+            }
         }
         else {
-            this.dismiss();
-            console.log("else");
-            // alert("Please Select the quantity");
+            alert("You need to login");
         }
     }
     quanity(value) {
@@ -403,6 +408,14 @@ let DetailPagePage = class DetailPagePage {
             //this.totalcosting();
             console.log("login data ", response);
         });
+    }
+    opencartpage() {
+        if (localStorage.getItem("login")) {
+            this.route.navigate(["/checkout-page"]);
+        }
+        else {
+            alert("You need to login");
+        }
     }
 };
 DetailPagePage.ctorParameters = () => [
@@ -513,7 +526,7 @@ DetailPagePageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])(
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-menu-toggle slot=\"start\">\n      <ion-icon\n        name=\"menu-outline\"\n        style=\"font-size: 170%; font-weight: bold; margin-left: 11%\"\n      ></ion-icon>\n    </ion-menu-toggle>\n    <ion-title style=\"font-size: 100%; font-family: revert\"\n      ><ion-img src=\"assets/logo.png\" alt=\"Freshofast\" style=\"width: 59%\">\n      </ion-img\n    ></ion-title>\n    <!-- <ion-buttons slot=\"end\" style=\"margin-right: 2%\">\n      <ion-icon slot=\"end\" name=\"search-outline\"></ion-icon>\n    </ion-buttons> -->\n    <ion-buttons\n      slot=\"end\"\n      style=\"margin-right: 4%\"\n      [routerLink]=\"['/checkout-page']\"\n    >\n      <ion-icon name=\"cart-outline\" style=\"font-size: 144%\"></ion-icon>\n      <span\n        style=\"\n          color: white;\n          background-color: red;\n          border-radius: 23px;\n          padding: 1px;\n          text-align: center;\n        \"\n        >{{cartlist.length}}</span\n      >\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"card-background-page\" *ngIf=\"list\">\n  <ion-slides #mySlider pager=\"false\" style=\"height: 38%\" *ngIf=\"list\">\n    <ion-slide>\n      <ion-img src=\"{{list.images.src}}\" style=\"margin-top: 5%\"> </ion-img>\n    </ion-slide>\n    <!-- <ion-slide>\n      <ion-img src=\"assets/potato1.jpg\"> </ion-img>\n    </ion-slide>\n    <ion-slide>\n      <h2>Slide 3</h2>\n    </ion-slide> -->\n  </ion-slides>\n  <div style=\"margin-left: 7%; font-size: 113%; font-weight: bold\" *ngIf=\"list\">\n    {{list.name}}\n  </div>\n  <div style=\"margin-left: 7%; margin-top: 2%\">\n    <b>Rs.{{list.price}}</b>\n  </div>\n  <ion-item>\n    <ion-label> <small>(Included all Taxes)</small> </ion-label>\n    <ion-select\n      start=\"end\"\n      *ngIf=\"list\"\n      placeholder=\"Select One\"\n      (ionChange)=\"quanity($event.target.value)\"\n      value=\"{{list.quantity[0].weight}}\"\n      style=\"max-width: 100%\"\n    >\n      <ion-select-option\n        *ngFor=\"let item of list.quantity \"\n        value=\"{{item.weight}}\"\n        >{{item.weight_html}}\n        <p>Rs.{{item.display_price}}</p></ion-select-option\n      >\n    </ion-select>\n  </ion-item>\n\n  <div style=\"margin-left: 6%; margin-top: 2%; font-weight: 600\">\n    Product Detail\n  </div>\n  <ion-item>\n    <p>{{list.description}}</p>\n  </ion-item>\n  <!-- <div style=\"height: 9%; margin-top: 4%\">\n    <button\n      [routerLink]=\"['/checkout-page']\"\n      style=\"\n        margin-left: 8%;\n        width: 31%;\n        background-color: #1cc716;\n        height: 68%;\n        border-radius: 6px;\n      \"\n    >\n      ADD TO CART\n    </button>\n    <button\n      style=\"\n        margin-left: 19%;\n        width: 31%;\n        background-color: #f54407;\n        height: 68%;\n        border-radius: 6px;\n      \"\n    >\n      BUY NOW\n    </button>\n  </div> -->\n\n  <!-- <ion-img src=\"assets/potato.jpeg\" style=\"height: 35%;\n  margin-top: 5%;\">\n\n  </ion-img> -->\n</ion-content>\n<ion-footer\n  style=\"\n    text-align: center;\n    background-color: #60be74;\n    padding: 6px;\n    font-weight: 700;\n  \"\n  (click)=\"additem(list, list.quantity[0].weight)\"\n  >Add To Cart\n  <div style=\"font-size: 1em\"><ion-icon name=\"cart-outline\"></ion-icon></div\n></ion-footer>\n<!--  -->\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-menu-toggle slot=\"start\">\n      <ion-icon\n        name=\"menu-outline\"\n        style=\"font-size: 170%; font-weight: bold; margin-left: 11%\"\n      ></ion-icon>\n    </ion-menu-toggle>\n    <ion-title style=\"font-size: 100%; font-family: revert\"\n      ><ion-img src=\"assets/logo.png\" alt=\"Freshofast\" style=\"width: 59%\">\n      </ion-img\n    ></ion-title>\n    <!-- <ion-buttons slot=\"end\" style=\"margin-right: 2%\">\n      <ion-icon slot=\"end\" name=\"search-outline\"></ion-icon>\n    </ion-buttons> -->\n    <ion-buttons slot=\"end\" style=\"margin-right: 4%\" (click)=\"opencartpage()\">\n      <ion-icon name=\"cart-outline\" style=\"font-size: 144%\"></ion-icon>\n      <span\n        style=\"\n          color: white;\n          background-color: red;\n          border-radius: 23px;\n          padding: 1px;\n          text-align: center;\n        \"\n        >{{cartlist.length}}</span\n      >\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"card-background-page\" *ngIf=\"list\">\n  <ion-slides #mySlider pager=\"false\" style=\"height: 38%\" *ngIf=\"list\">\n    <ion-slide>\n      <ion-img src=\"{{list.images.src}}\" style=\"margin-top: 5%\"> </ion-img>\n    </ion-slide>\n    <!-- <ion-slide>\n      <ion-img src=\"assets/potato1.jpg\"> </ion-img>\n    </ion-slide>\n    <ion-slide>\n      <h2>Slide 3</h2>\n    </ion-slide> -->\n  </ion-slides>\n  <div style=\"margin-left: 7%; font-size: 113%; font-weight: bold\" *ngIf=\"list\">\n    {{list.name}}\n  </div>\n  <div style=\"margin-left: 7%; margin-top: 2%\">\n    <b>Rs.{{list.price}}</b>\n  </div>\n  <ion-item>\n    <ion-label> <small>(Included all Taxes)</small> </ion-label>\n    <ion-select\n      start=\"end\"\n      *ngIf=\"list\"\n      placeholder=\"Select One\"\n      (ionChange)=\"quanity($event.target.value)\"\n      value=\"{{list.quantity[0].weight}}\"\n      style=\"max-width: 100%\"\n    >\n      <ion-select-option\n        *ngFor=\"let item of list.quantity \"\n        value=\"{{item.weight}}\"\n        >{{item.weight_html}}\n        <p>Rs.{{item.display_price}}</p></ion-select-option\n      >\n    </ion-select>\n  </ion-item>\n\n  <div style=\"margin-left: 6%; margin-top: 2%; font-weight: 600\">\n    Product Detail\n  </div>\n  <ion-item>\n    <p>{{list.description}}</p>\n  </ion-item>\n  <!-- <div style=\"height: 9%; margin-top: 4%\">\n    <button\n      [routerLink]=\"['/checkout-page']\"\n      style=\"\n        margin-left: 8%;\n        width: 31%;\n        background-color: #1cc716;\n        height: 68%;\n        border-radius: 6px;\n      \"\n    >\n      ADD TO CART\n    </button>\n    <button\n      style=\"\n        margin-left: 19%;\n        width: 31%;\n        background-color: #f54407;\n        height: 68%;\n        border-radius: 6px;\n      \"\n    >\n      BUY NOW\n    </button>\n  </div> -->\n\n  <!-- <ion-img src=\"assets/potato.jpeg\" style=\"height: 35%;\n  margin-top: 5%;\">\n\n  </ion-img> -->\n</ion-content>\n<ion-footer\n  style=\"\n    text-align: center;\n    background-color: #60be74;\n    padding: 6px;\n    font-weight: 700;\n  \"\n  (click)=\"additem(list, list.quantity[0].weight)\"\n  >Add To Cart\n  <div style=\"font-size: 1em\"><ion-icon name=\"cart-outline\"></ion-icon></div\n></ion-footer>\n<!--  -->\n");
 
 /***/ }),
 

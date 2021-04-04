@@ -85,6 +85,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "tk/3");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "tyNb");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ "TEn/");
+/* harmony import */ var _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic-native/http/ngx */ "XSEc");
+
 
 
 
@@ -93,8 +95,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let ProfilePage = class ProfilePage {
-    constructor(http, route, loadingController, popoverController) {
+    constructor(http, httpplugin, route, loadingController, popoverController) {
         this.http = http;
+        this.httpplugin = httpplugin;
         this.route = route;
         this.loadingController = loadingController;
         this.popoverController = popoverController;
@@ -117,12 +120,22 @@ let ProfilePage = class ProfilePage {
                 Authorization: "Basic " + btoa("freshofast:Freshofast@#2020"),
             }),
         };
-        this.http
-            .get(`https://freshofast.com/wp-json/wc/v3/customers/${localStorage.getItem("profileId")}`, httpOptions)
-            .subscribe((data) => {
-            console.log("success", data);
-            var response = data;
-            this.profiledata = data;
+        var url = `https://freshofast.com/wp-json/wc/v3/customers/${localStorage.getItem("profileId")}`;
+        console.log("url......", url);
+        this.httpplugin
+            .get(url, {}, {
+            Authorization: "Basic " + btoa("freshofast:Freshofast@#2020"),
+            "Content-Type": "application/json",
+        })
+            .then((data) => {
+            var r = encodeURIComponent(JSON.stringify(data));
+            console.log("success profile", encodeURIComponent(JSON.stringify(data)));
+            var val = data.data;
+            var b = val.replace(/^\s+/g, "");
+            var c = JSON.parse(b);
+            console.log("cccccc", c);
+            var response = c;
+            this.profiledata = c;
             this.mail = response.email;
             this.last_name = response.last_name;
             this.user_name = response.first_name;
@@ -185,15 +198,41 @@ let ProfilePage = class ProfilePage {
                     Authorization: "Basic " + btoa("freshofast:Freshofast@#2020"),
                 }),
             };
-            this.http
-                .put(`https://freshofast.com/wp-json/wc/v3/customers/${localStorage.getItem("profileId")}`, body, httpOptions)
-                .subscribe((data) => {
+            var url = `https://freshofast.com/wp-json/wc/v3/customers/${localStorage.getItem("profileId")}`;
+            console.log("url......", url);
+            this.httpplugin.setDataSerializer("json");
+            this.httpplugin
+                .put(url, {
+                email: this.mail,
+                first_name: this.user_name,
+                last_name: this.last_name,
+                //role: "administrator",
+                // username: this.user_name,
+                billing: {
+                    first_name: this.user_name,
+                    last_name: this.last_name,
+                    address_1: this.address_1,
+                    city: this.city,
+                    state: this.state,
+                    postcode: this.postcode,
+                    country: " ",
+                    email: this.mail,
+                    phone: this.phone,
+                },
+            }, {
+                Authorization: "Basic " + btoa("freshofast:Freshofast@#2020"),
+                "Content-Type": "application/json",
+            })
+                .then((data) => {
                 console.log("success", data);
                 // this.user_detail();
                 this.dismiss();
             }, (error) => {
-                console.log("oops", error);
-                alert("Credential is wrong");
+                var val = error.error;
+                var b = val.replace(/^\s+/g, "");
+                var c = JSON.parse(b);
+                console.log("cccccc", c);
+                alert("No updation");
                 this.dismiss();
             }
             //   (res) => {
@@ -206,6 +245,7 @@ let ProfilePage = class ProfilePage {
             );
         }
         else {
+            this.dismiss();
             alert(" Please Fill all credential");
         }
     }
@@ -229,6 +269,7 @@ let ProfilePage = class ProfilePage {
 };
 ProfilePage.ctorParameters = () => [
     { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"] },
+    { type: _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_7__["HTTP"] },
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["LoadingController"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["PopoverController"] }

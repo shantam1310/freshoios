@@ -246,12 +246,19 @@
       var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
       /*! @angular/router */
       "tyNb");
+      /* harmony import */
+
+
+      var _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      /*! @ionic-native/http/ngx */
+      "XSEc");
 
       var HomePage = /*#__PURE__*/function () {
-        function HomePage(http, route, loadingController, alertCtrl, popoverController) {
+        function HomePage(http, httpplugin, route, loadingController, alertCtrl, popoverController) {
           _classCallCheck(this, HomePage);
 
           this.http = http;
+          this.httpplugin = httpplugin;
           this.route = route;
           this.loadingController = loadingController;
           this.alertCtrl = alertCtrl;
@@ -391,6 +398,8 @@
 
                 console.log("api  data ", response);
               });
+            } else {
+              this.cartdata();
             }
           }
         }, {
@@ -501,11 +510,17 @@
                 Authorization: "Basic " + btoa("freshofast:Freshofast@#2020")
               })
             };
-            this.http.get("https://freshofast.com/wp-json/wc/v3/coupons", //{
-            httpOptions //}
-            ).subscribe(function (data) {
+            this.httpplugin.get("https://freshofast.com/wp-json/wc/v3/coupons", {}, //{
+            {
+              Authorization: "Basic " + btoa("freshofast:Freshofast@#2020"),
+              "Content-Type": "application/json"
+            } //}
+            ).then(function (data) {
+              var val = data.data;
+              var b = val.replace(/^\s+/g, "");
+              var c = JSON.parse(b);
               console.log(" couponsuccess", data);
-              var a = data;
+              var a = c;
 
               _this3.presentPopover(a[0].code, a[0].amount);
 
@@ -521,7 +536,7 @@
           value: function variationlist() {
             var _this4 = this;
 
-            this.http.get("https://freshofast.com/wp-json/public-woo/v3/products/4667/variations/").subscribe(function (res) {
+            this.httpplugin.get("https://freshofast.com/wp-json/public-woo/v3/products/4667/variations/", {}, {}).then(function (res) {
               var response = res;
 
               _this4.dismiss();
@@ -556,11 +571,17 @@
                     quantity: value.quantity[i].min_qty,
                     variation_id: value.quantity[i].variation_id
                   };
-                  console.log("if condition", value.quantity[i].weight, this.value);
-                  this.http.post("https://freshofast.com/wp-json/cocart/v1/add-item", //{
-                  body, httpOptions //}
-                  ).subscribe(function (data) {
-                    console.log("success", data);
+                  console.log("if condition", value.quantity[i].weight, this.value); //var req = encodeURIComponent(JSON.stringify(body));
+
+                  console.log("body------", body);
+                  this.httpplugin.setDataSerializer("json");
+                  this.httpplugin.post("https://freshofast.com/wp-json/cocart/v1/add-item", //{
+                  body, {
+                    Authorization: "Basic " + btoa("".concat(localStorage.getItem("username"), ":").concat(localStorage.getItem("password"))),
+                    "Content-Type": "application/json"
+                  } //}
+                  ).then(function (data) {
+                    console.log("success", JSON.stringify(data));
 
                     _this5.cartdata(); // this.Additem = this.Additem + 1;
                     // localStorage.setItem("addedItem", this.Additem.toString());
@@ -569,7 +590,7 @@
                     _this5.addcardtoast(); // this.dismiss();
 
                   }, function (error) {
-                    console.log("oops", error);
+                    console.log("oops", JSON.stringify(error));
                     alert("Out of Stock");
 
                     _this5.dismiss();
@@ -603,13 +624,19 @@
                     quantity: value.quantity[i].min_qty,
                     variation_id: value.quantity[i].variation_id
                   };
-                  console.log("if condition", value.quantity[i].weight, this.value);
-                  this.http.post("https://freshofast.com/wp-json/cocart/v1/add-item", //{
-                  _body, _httpOptions //}
-                  ).subscribe(function (data) {
+                  console.log("if condition", value.quantity[i].weight, this.value, _body);
+                  this.httpplugin.setDataSerializer("json");
+                  this.httpplugin.post("https://freshofast.com/wp-json/cocart/v1/add-item", //{
+                  _body, {
+                    Authorization: "Basic " + btoa("".concat(localStorage.getItem("username"), ":").concat(localStorage.getItem("password"))),
+                    "Content-Type": "application/json"
+                  } //}
+                  ).then(function (data) {
                     console.log("success", data);
 
-                    _this5.cartdata(); // this.Additem = this.Additem + 1;
+                    _this5.cartdata();
+
+                    _this5.addcardtoast(); // this.Additem = this.Additem + 1;
                     // localStorage.setItem("addedItem", this.Additem.toString());
                     // this.dismiss();
 
@@ -651,8 +678,15 @@
                 Authorization: "Basic " + btoa("".concat(localStorage.getItem("username"), ":").concat(localStorage.getItem("password")))
               })
             };
-            this.http.get("https://freshofast.com/wp-json/cocart/v1/get-cart", httpOptions).subscribe(function (res) {
-              var response = res; //this.dismiss();
+            this.httpplugin.get("https://freshofast.com/wp-json/cocart/v1/get-cart", {}, {
+              Authorization: "Basic " + btoa("".concat(localStorage.getItem("username"), ":").concat(localStorage.getItem("password"))),
+              "Content-Type": "application/json"
+            }).then(function (res) {
+              var val = res.data;
+              var b = val.replace(/^\s+/g, "");
+              var c = JSON.parse(b);
+              console.log("resssssss", c);
+              var response = c; //this.dismiss();
               // this.cartlist = res;
 
               console.log("res data ", response.length, _this6.cartflag); // if (this.cartflag == true || response.length != 0) {
@@ -695,6 +729,8 @@
       HomePage.ctorParameters = function () {
         return [{
           type: _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClient"]
+        }, {
+          type: _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_8__["HTTP"]
         }, {
           type: _angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"]
         }, {

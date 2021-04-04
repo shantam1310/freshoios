@@ -245,14 +245,21 @@
 
       var src_app_pages_location_location_page__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
       /*! src/app/pages/location/location.page */
-      "N4Pa"); //import { CouponPopOverPage } from "src/app/pages/coupon-pop-over/coupon-pop-over.page";
+      "N4Pa");
+      /* harmony import */
+
+
+      var _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      /*! @ionic-native/http/ngx */
+      "XSEc"); //import { CouponPopOverPage } from "src/app/pages/coupon-pop-over/coupon-pop-over.page";
 
 
       var LoginPage = /*#__PURE__*/function () {
-        function LoginPage(http, route, loadingController, popoverController) {
+        function LoginPage(http, httpclient, route, loadingController, popoverController) {
           _classCallCheck(this, LoginPage);
 
           this.http = http;
+          this.httpclient = httpclient;
           this.route = route;
           this.loadingController = loadingController;
           this.popoverController = popoverController;
@@ -290,8 +297,13 @@
                   "Content-Type": "application/json",
                   Authorization: "Basic " + btoa("".concat(this.user_name, ":").concat(this.Password))
                 })
-              };
-              this.http.get("http://freshofast.com/wp-json/wp/v2/users", httpOptions).subscribe(function (data) {
+              }; // this.http
+              //   .get("http://freshofast.com/wp-json/wp/v2/users", httpOptions)
+
+              this.http.get("http://freshofast.com/wp-json/wp/v2/users", {}, {
+                Authorization: "Basic " + btoa("".concat(this.user_name, ":").concat(this.Password)),
+                "Content-Type": "application/json"
+              }).then(function (data) {
                 console.log("success", data);
                 localStorage.setItem("login", "true");
 
@@ -303,14 +315,7 @@
                 alert("Credential is wrong");
 
                 _this.dismiss();
-              } //   (res) => {
-              //   var response: any = res;
-              //   //this.dismiss();
-              //   this.user_detail();
-              //   localStorage.setItem("login", "true");
-              //   console.log("login data ", response);
-              // }
-              );
+              });
             } else {
               this.dismiss();
               alert("Fill the Credential");
@@ -327,7 +332,7 @@
               user_login: this.user_name
             }; // http://freshofast.com/login
 
-            this.http.post("http://freshofast.com/login", formData).subscribe(function (res) {
+            this.httpclient.post("http://freshofast.com/login", formData).subscribe(function (res) {
               var response = res;
 
               _this2.dismiss();
@@ -337,21 +342,7 @@
               console.log("login data ", response);
               localStorage.setItem("profileId", response[0].ID);
             });
-          } // presentLoading() {
-          //     return  this.loadingController
-          //             .create({
-          //         // duration: 5000,
-          //         })
-          //             .then((a) => {
-          //             a.present().then(() => {
-          //                 console.log("presented");
-          //                 if (!this.isLoading) {
-          //                     a.dismiss().then(() => console.log("abort presenting"));
-          //                 }
-          //             });
-          //         });
-          // }
-
+          }
         }, {
           key: "presentLoading",
           value: function presentLoading() {
@@ -408,12 +399,7 @@
                 }
               }, _callee2, this);
             }));
-          } // dismiss() {
-          //     return  this.loadingController
-          //             .dismiss()
-          //             .then(() => console.log("dismissed"));
-          // }
-
+          }
         }, {
           key: "presentPopover",
           value: function presentPopover() {
@@ -456,6 +442,8 @@
 
       LoginPage.ctorParameters = function () {
         return [{
+          type: _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_8__["HTTP"]
+        }, {
           type: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]
         }, {
           type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]
@@ -470,15 +458,7 @@
         selector: "app-login",
         template: _raw_loader_login_page_html__WEBPACK_IMPORTED_MODULE_1__["default"],
         styles: [_login_page_scss__WEBPACK_IMPORTED_MODULE_2__["default"]]
-      })], LoginPage); //   const pop = this.popoverController.create({
-      //     component: LocationPage,
-      //     // cssClass: "my-custom-class",
-      //     //event: ev,
-      //     translucent: true,
-      //   });
-      //   pop.present();
-      // }
-
+      })], LoginPage);
       /***/
     }
   }]);

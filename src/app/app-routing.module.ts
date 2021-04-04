@@ -9,7 +9,7 @@ const routes: Routes = [
   },
   {
     path: "",
-    redirectTo: "login",
+    redirectTo: "home",
     pathMatch: "full",
   },
   {
@@ -81,64 +81,105 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'order-detail',
-    loadChildren: () => import('./pages/order-detail/order-detail.module').then( m => m.OrderDetailPageModule)
+    path: "order-detail",
+    loadChildren: () =>
+      import("./pages/order-detail/order-detail.module").then(
+        (m) => m.OrderDetailPageModule
+      ),
   },
   {
-    path: 'location',
-    loadChildren: () => import('./pages/location/location.module').then( m => m.LocationPageModule)
+    path: "location",
+    loadChildren: () =>
+      import("./pages/location/location.module").then(
+        (m) => m.LocationPageModule
+      ),
   },
   {
-    path: 'exotic-list',
-    loadChildren: () => import('./pages/exotic-list/exotic-list.module').then( m => m.ExoticListPageModule)
+    path: "exotic-list",
+    loadChildren: () =>
+      import("./pages/exotic-list/exotic-list.module").then(
+        (m) => m.ExoticListPageModule
+      ),
   },
   {
-    path: 'exotic-detail',
-    loadChildren: () => import('./pages/exotic-detail/exotic-detail.module').then( m => m.ExoticDetailPageModule)
+    path: "exotic-detail",
+    loadChildren: () =>
+      import("./pages/exotic-detail/exotic-detail.module").then(
+        (m) => m.ExoticDetailPageModule
+      ),
   },
   {
-    path: 'exotic-vegetable-list',
-    loadChildren: () => import('./pages/exotic-vegetable-list/exotic-vegetable-list.module').then( m => m.ExoticVegetableListPageModule)
+    path: "exotic-vegetable-list",
+    loadChildren: () =>
+      import("./pages/exotic-vegetable-list/exotic-vegetable-list.module").then(
+        (m) => m.ExoticVegetableListPageModule
+      ),
   },
   {
-    path: 'exotic-vegetable-detail',
-    loadChildren: () => import('./pages/exotic-vegetable-detail/exotic-vegetable-detail.module').then( m => m.ExoticVegetableDetailPageModule)
+    path: "exotic-vegetable-detail",
+    loadChildren: () =>
+      import(
+        "./pages/exotic-vegetable-detail/exotic-vegetable-detail.module"
+      ).then((m) => m.ExoticVegetableDetailPageModule),
   },
   {
-    path: 'sign-up',
-    loadChildren: () => import('./pages/sign-up/sign-up.module').then( m => m.SignUpPageModule)
+    path: "sign-up",
+    loadChildren: () =>
+      import("./pages/sign-up/sign-up.module").then((m) => m.SignUpPageModule),
   },
   {
-    path: 'thank-you',
-    loadChildren: () => import('./pages/thank-you/thank-you.module').then( m => m.ThankYouPageModule)
+    path: "thank-you",
+    loadChildren: () =>
+      import("./pages/thank-you/thank-you.module").then(
+        (m) => m.ThankYouPageModule
+      ),
   },
   {
-    path: 'profile',
-    loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
+    path: "profile",
+    loadChildren: () =>
+      import("./pages/profile/profile.module").then((m) => m.ProfilePageModule),
   },
   {
-    path: 'privacy-policy',
-    loadChildren: () => import('./pages/privacy-policy/privacy-policy.module').then( m => m.PrivacyPolicyPageModule)
+    path: "privacy-policy",
+    loadChildren: () =>
+      import("./pages/privacy-policy/privacy-policy.module").then(
+        (m) => m.PrivacyPolicyPageModule
+      ),
   },
   {
-    path: 'termsand-condition',
-    loadChildren: () => import('./pages/termsand-condition/termsand-condition.module').then( m => m.TermsandConditionPageModule)
+    path: "termsand-condition",
+    loadChildren: () =>
+      import("./pages/termsand-condition/termsand-condition.module").then(
+        (m) => m.TermsandConditionPageModule
+      ),
   },
   {
-    path: 'return-and-refund',
-    loadChildren: () => import('./pages/return-and-refund/return-and-refund.module').then( m => m.ReturnAndRefundPageModule)
+    path: "return-and-refund",
+    loadChildren: () =>
+      import("./pages/return-and-refund/return-and-refund.module").then(
+        (m) => m.ReturnAndRefundPageModule
+      ),
   },
   {
-    path: 'about-us',
-    loadChildren: () => import('./pages/about-us/about-us.module').then( m => m.AboutUsPageModule)
+    path: "about-us",
+    loadChildren: () =>
+      import("./pages/about-us/about-us.module").then(
+        (m) => m.AboutUsPageModule
+      ),
   },
   {
-    path: 'view-all',
-    loadChildren: () => import('./pages/view-all/view-all.module').then( m => m.ViewAllPageModule)
+    path: "view-all",
+    loadChildren: () =>
+      import("./pages/view-all/view-all.module").then(
+        (m) => m.ViewAllPageModule
+      ),
   },
   {
-    path: 'coupon-pop-over',
-    loadChildren: () => import('./pages/coupon-pop-over/coupon-pop-over.module').then( m => m.CouponPopOverPageModule)
+    path: "coupon-pop-over",
+    loadChildren: () =>
+      import("./pages/coupon-pop-over/coupon-pop-over.module").then(
+        (m) => m.CouponPopOverPageModule
+      ),
   },
 ];
 

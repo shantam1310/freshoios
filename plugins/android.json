@@ -7,41 +7,41 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "io.ionic.starter"
+    "cordova-paytm-allinonesdk": {
+      "PACKAGE_NAME": "io.freshofastFinal"
     },
-    "cordova-plugin-statusbar": {
-      "PACKAGE_NAME": "io.ionic.starter"
+    "cordova-plugin-advanced-http": {
+      "PACKAGE_NAME": "io.freshofastFinal"
+    },
+    "cordova-plugin-androidx-adapter": {
+      "PACKAGE_NAME": "io.freshofastFinal"
+    },
+    "cordova-plugin-app-launcher": {
+      "PACKAGE_NAME": "io.freshofastFinal"
     },
     "cordova-plugin-device": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "io.freshofastFinal"
     },
-    "cordova-plugin-splashscreen": {
-      "PACKAGE_NAME": "io.ionic.starter"
+    "cordova-plugin-ionic-keyboard": {
+      "PACKAGE_NAME": "io.freshofastFinal"
     },
     "cordova-plugin-ionic-webview": {
       "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+",
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "io.freshofastFinal"
     },
-    "cordova-plugin-ionic-keyboard": {
-      "PACKAGE_NAME": "io.ionic.starter"
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "io.freshofastFinal"
     },
-    "cordova-paytm-allinonesdk": {
-      "PACKAGE_NAME": "io.ionic.starter"
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "io.freshofastFinal"
     },
-    "cordova-plugin-androidx-adapter": {
-      "PACKAGE_NAME": "io.ionic.starter"
-    },
-    "cordova-plugin-app-launcher": {
-      "PACKAGE_NAME": "io.ionic.starter"
-    },
-    "cordova-plugin-advanced-http": {
-      "PACKAGE_NAME": "io.freshofast"
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "io.freshofastFinal"
     }
   },
   "dependent_plugins": {
     "cordova-plugin-file": {
-      "PACKAGE_NAME": "io.freshofast"
+      "PACKAGE_NAME": "io.freshofastFinal"
     }
   }
 }

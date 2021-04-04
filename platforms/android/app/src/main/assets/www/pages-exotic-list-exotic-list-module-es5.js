@@ -180,12 +180,19 @@
       var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
       /*! @ionic/angular */
       "TEn/");
+      /* harmony import */
+
+
+      var _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! @ionic-native/http/ngx */
+      "XSEc");
 
       var ExoticListPage = /*#__PURE__*/function () {
-        function ExoticListPage(http, route, loadingController, alertCtrl, popoverController) {
+        function ExoticListPage(http, httpplugin, route, loadingController, alertCtrl, popoverController) {
           _classCallCheck(this, ExoticListPage);
 
           this.http = http;
+          this.httpplugin = httpplugin;
           this.route = route;
           this.loadingController = loadingController;
           this.alertCtrl = alertCtrl;
@@ -351,9 +358,13 @@
                     variation_id: value.quantity[i].variation_id
                   };
                   console.log("if condition", value.quantity[i].weight, this.value);
-                  this.http.post("https://freshofast.com/wp-json/cocart/v1/add-item", //{
-                  body, httpOptions //}
-                  ).subscribe(function (data) {
+                  this.httpplugin.setDataSerializer("json");
+                  this.httpplugin.post("https://freshofast.com/wp-json/cocart/v1/add-item", //{
+                  body, {
+                    Authorization: "Basic " + btoa("".concat(localStorage.getItem("username"), ":").concat(localStorage.getItem("password"))),
+                    "Content-Type": "application/json"
+                  } //}
+                  ).then(function (data) {
                     _this2.addcardtoast();
 
                     console.log("success", data);
@@ -398,9 +409,10 @@
                     variation_id: value.quantity[i].variation_id
                   };
                   console.log("weight if condition", value.quantity[i].weight, this.value);
-                  this.http.post("https://freshofast.com/wp-json/cocart/v1/add-item", //{
-                  _body, _httpOptions //}
-                  ).subscribe(function (data) {
+                  this.httpplugin.setDataSerializer("json");
+                  this.httpplugin.post("https://freshofast.com/wp-json/cocart/v1/add-item", //{
+                  _body, btoa("".concat(localStorage.getItem("username"), ":").concat(localStorage.getItem("password"))) //}
+                  ).then(function (data) {
                     _this2.addcardtoast();
 
                     console.log("success", data);
@@ -447,8 +459,12 @@
                 Authorization: "Basic " + btoa("".concat(localStorage.getItem("username"), ":").concat(localStorage.getItem("password")))
               })
             };
-            this.http.get("https://freshofast.com/wp-json/cocart/v1/get-cart", httpOptions).subscribe(function (res) {
-              var response = res; //this.dismiss();
+            this.httpplugin.get("https://freshofast.com/wp-json/cocart/v1/get-cart", {}, btoa("".concat(localStorage.getItem("username"), ":").concat(localStorage.getItem("password")))).then(function (res) {
+              var val = res.data;
+              var b = val.replace(/^\s+/g, "");
+              var c = JSON.parse(b);
+              console.log("resssssss", c);
+              var response = c; //this.dismiss();
               // this.cartlist = res;
 
               for (var propName in response) {
@@ -475,6 +491,8 @@
       ExoticListPage.ctorParameters = function () {
         return [{
           type: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]
+        }, {
+          type: _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_7__["HTTP"]
         }, {
           type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]
         }, {

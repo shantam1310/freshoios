@@ -147,7 +147,7 @@ ext {
 }
 
 // PLUGIN GRADLE EXTENSIONS START
-apply from: "../cordova-paytm-allinonesdk/starter-plugin.gradle"
+apply from: "../cordova-paytm-allinonesdk/freshofastFinal-plugin.gradle"
 // PLUGIN GRADLE EXTENSIONS END
 
 def hasBuildExtras1 = file('build-extras.gradle').exists()

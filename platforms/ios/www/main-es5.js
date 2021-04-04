@@ -17,7 +17,7 @@
     /***/
     function _(module, exports, __webpack_require__) {
       module.exports = __webpack_require__(
-      /*! /Users/shantamsharma/Desktop/untitled folder 3/freshofastIos-master/src/main.ts */
+      /*! /Users/shantamsharma/Desktop/untitled folder 2/freshofastIos/src/main.ts */
       "zUnb");
       /***/
     },
@@ -611,7 +611,7 @@
         }
       }, {
         path: "",
-        redirectTo: "login",
+        redirectTo: "home",
         pathMatch: "full"
       }, {
         path: "login",
@@ -724,7 +724,7 @@
           });
         }
       }, {
-        path: 'order-detail',
+        path: "order-detail",
         loadChildren: function loadChildren() {
           return __webpack_require__.e(
           /*! import() | pages-order-detail-order-detail-module */
@@ -735,7 +735,7 @@
           });
         }
       }, {
-        path: 'location',
+        path: "location",
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-location-location-module */
@@ -746,7 +746,7 @@
           });
         }
       }, {
-        path: 'exotic-list',
+        path: "exotic-list",
         loadChildren: function loadChildren() {
           return __webpack_require__.e(
           /*! import() | pages-exotic-list-exotic-list-module */
@@ -757,7 +757,7 @@
           });
         }
       }, {
-        path: 'exotic-detail',
+        path: "exotic-detail",
         loadChildren: function loadChildren() {
           return __webpack_require__.e(
           /*! import() | pages-exotic-detail-exotic-detail-module */
@@ -768,7 +768,7 @@
           });
         }
       }, {
-        path: 'exotic-vegetable-list',
+        path: "exotic-vegetable-list",
         loadChildren: function loadChildren() {
           return __webpack_require__.e(
           /*! import() | pages-exotic-vegetable-list-exotic-vegetable-list-module */
@@ -779,7 +779,7 @@
           });
         }
       }, {
-        path: 'exotic-vegetable-detail',
+        path: "exotic-vegetable-detail",
         loadChildren: function loadChildren() {
           return __webpack_require__.e(
           /*! import() | pages-exotic-vegetable-detail-exotic-vegetable-detail-module */
@@ -790,7 +790,7 @@
           });
         }
       }, {
-        path: 'sign-up',
+        path: "sign-up",
         loadChildren: function loadChildren() {
           return __webpack_require__.e(
           /*! import() | pages-sign-up-sign-up-module */
@@ -801,7 +801,7 @@
           });
         }
       }, {
-        path: 'thank-you',
+        path: "thank-you",
         loadChildren: function loadChildren() {
           return __webpack_require__.e(
           /*! import() | pages-thank-you-thank-you-module */
@@ -812,7 +812,7 @@
           });
         }
       }, {
-        path: 'profile',
+        path: "profile",
         loadChildren: function loadChildren() {
           return __webpack_require__.e(
           /*! import() | pages-profile-profile-module */
@@ -823,7 +823,7 @@
           });
         }
       }, {
-        path: 'privacy-policy',
+        path: "privacy-policy",
         loadChildren: function loadChildren() {
           return __webpack_require__.e(
           /*! import() | pages-privacy-policy-privacy-policy-module */
@@ -834,7 +834,7 @@
           });
         }
       }, {
-        path: 'termsand-condition',
+        path: "termsand-condition",
         loadChildren: function loadChildren() {
           return __webpack_require__.e(
           /*! import() | pages-termsand-condition-termsand-condition-module */
@@ -845,7 +845,7 @@
           });
         }
       }, {
-        path: 'return-and-refund',
+        path: "return-and-refund",
         loadChildren: function loadChildren() {
           return __webpack_require__.e(
           /*! import() | pages-return-and-refund-return-and-refund-module */
@@ -856,7 +856,7 @@
           });
         }
       }, {
-        path: 'about-us',
+        path: "about-us",
         loadChildren: function loadChildren() {
           return __webpack_require__.e(
           /*! import() | pages-about-us-about-us-module */
@@ -867,7 +867,7 @@
           });
         }
       }, {
-        path: 'view-all',
+        path: "view-all",
         loadChildren: function loadChildren() {
           return __webpack_require__.e(
           /*! import() | pages-view-all-view-all-module */
@@ -878,7 +878,7 @@
           });
         }
       }, {
-        path: 'coupon-pop-over',
+        path: "coupon-pop-over",
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-coupon-pop-over-coupon-pop-over-module */

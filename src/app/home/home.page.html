@@ -14,11 +14,7 @@
       <!-- <ion-buttons slot="end" style="margin-right: 2%">
         <ion-icon slot="end" name="search-outline"></ion-icon>
       </ion-buttons> -->
-      <ion-buttons
-        slot="end"
-        style="margin-right: 4%"
-        [routerLink]="['/checkout-page']"
-      >
+      <ion-buttons slot="end" style="margin-right: 4%" (click)="opencartpage()">
         <ion-icon name="cart-outline" style="font-size: 144%"></ion-icon>
         <span
           style="

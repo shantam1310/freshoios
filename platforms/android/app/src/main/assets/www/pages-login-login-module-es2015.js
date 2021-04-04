@@ -123,6 +123,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "tyNb");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ "TEn/");
 /* harmony import */ var src_app_pages_location_location_page__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/pages/location/location.page */ "N4Pa");
+/* harmony import */ var _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic-native/http/ngx */ "XSEc");
 
 
 
@@ -132,9 +133,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 //import { CouponPopOverPage } from "src/app/pages/coupon-pop-over/coupon-pop-over.page";
+
 let LoginPage = class LoginPage {
-    constructor(http, route, loadingController, popoverController) {
+    constructor(http, httpclient, route, loadingController, popoverController) {
         this.http = http;
+        this.httpclient = httpclient;
         this.route = route;
         this.loadingController = loadingController;
         this.popoverController = popoverController;
@@ -164,9 +167,14 @@ let LoginPage = class LoginPage {
                     Authorization: "Basic " + btoa(`${this.user_name}:${this.Password}`),
                 }),
             };
+            // this.http
+            //   .get("http://freshofast.com/wp-json/wp/v2/users", httpOptions)
             this.http
-                .get("http://freshofast.com/wp-json/wp/v2/users", httpOptions)
-                .subscribe((data) => {
+                .get("http://freshofast.com/wp-json/wp/v2/users", {}, {
+                Authorization: "Basic " + btoa(`${this.user_name}:${this.Password}`),
+                "Content-Type": "application/json",
+            })
+                .then((data) => {
                 console.log("success", data);
                 localStorage.setItem("login", "true");
                 this.user_detail();
@@ -175,15 +183,7 @@ let LoginPage = class LoginPage {
                 console.log("oops", error);
                 alert("Credential is wrong");
                 this.dismiss();
-            }
-            //   (res) => {
-            //   var response: any = res;
-            //   //this.dismiss();
-            //   this.user_detail();
-            //   localStorage.setItem("login", "true");
-            //   console.log("login data ", response);
-            // }
-            );
+            });
         }
         else {
             this.dismiss();
@@ -197,7 +197,9 @@ let LoginPage = class LoginPage {
             user_login: this.user_name,
         };
         // http://freshofast.com/login
-        this.http.post("http://freshofast.com/login", formData).subscribe((res) => {
+        this.httpclient
+            .post("http://freshofast.com/login", formData)
+            .subscribe((res) => {
             var response = res;
             this.dismiss();
             this.route.navigate(["/home"]);
@@ -205,20 +207,6 @@ let LoginPage = class LoginPage {
             localStorage.setItem("profileId", response[0].ID);
         });
     }
-    // presentLoading() {
-    //     return  this.loadingController
-    //             .create({
-    //         // duration: 5000,
-    //         })
-    //             .then((a) => {
-    //             a.present().then(() => {
-    //                 console.log("presented");
-    //                 if (!this.isLoading) {
-    //                     a.dismiss().then(() => console.log("abort presenting"));
-    //                 }
-    //             });
-    //         });
-    // }
     presentLoading() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             this.isLoading = true;
@@ -236,11 +224,6 @@ let LoginPage = class LoginPage {
             this.isLoading = false;
         });
     }
-    // dismiss() {
-    //     return  this.loadingController
-    //             .dismiss()
-    //             .then(() => console.log("dismissed"));
-    // }
     presentPopover() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             const popover = yield this.popoverController.create({
@@ -256,6 +239,7 @@ let LoginPage = class LoginPage {
     }
 };
 LoginPage.ctorParameters = () => [
+    { type: _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_8__["HTTP"] },
     { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"] },
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["LoadingController"] },
@@ -269,14 +253,6 @@ LoginPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     })
 ], LoginPage);
 
-//   const pop = this.popoverController.create({
-//     component: LocationPage,
-//     // cssClass: "my-custom-class",
-//     //event: ev,
-//     translucent: true,
-//   });
-//   pop.present();
-// }
 
 
 /***/ })

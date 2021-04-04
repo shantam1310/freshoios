@@ -219,151 +219,155 @@ export class DetailPagePage implements OnInit {
     localStorage.removeItem("featuredproduct");
   }
   ngOnInit() {}
-  additem(value, weight) {
-    if (this.value) {
-      // this.value = weight;
-      this.presentLoading();
-      // document.getElementById("mySelect").value
-      console.log("add item", value.quantity);
-      //https://freshofast.com/wp-json/cocart/v1/add-item
-      localStorage.getItem("username");
-      localStorage.getItem("password");
-      const httpOptions = {
-        headers: new HttpHeaders({
-          "Content-Type": "application/json",
-          Authorization:
-            "Basic " +
-            btoa(
-              `${localStorage.getItem("username")}:${localStorage.getItem(
-                "password"
-              )}`
-            ),
-        }),
-      };
-      for (var i = 0; i <= value.quantity.length - 1; i++) {
-        if (value.quantity[i].weight == this.value) {
-          const body = {
-            product_id: value.id.toString(),
-            quantity: value.quantity[i].min_qty,
-            variation_id: value.quantity[i].variation_id,
-          };
-          console.log("if condition", value.quantity[i].weight, this.value);
-          this.httpplugin.setDataSerializer("json");
-          this.httpplugin
-            .post(
-              "https://freshofast.com/wp-json/cocart/v1/add-item",
-              //{
-              body,
-              {
-                Authorization:
-                  "Basic " +
-                  btoa(
-                    `${localStorage.getItem("username")}:${localStorage.getItem(
-                      "password"
-                    )}`
-                  ),
-                "Content-Type": "application/json",
-              }
-              //}
-            )
-            .then(
-              (data) => {
-                console.log("success", data);
-                this.cartdata();
-                // this.Additem = this.Additem + 1;
-                // localStorage.setItem("addedItem", this.Additem.toString());
-                this.addcardtoast();
-                this.dismiss();
-              },
-              (error) => {
-                console.log("oops", error);
-                alert("Out of Stock");
-                this.dismiss();
-              }
-            );
-        } else {
-          this.dismiss();
-          console.log("else condition", value.quantity[i].weight, this.value);
+  additem(value: any, weight: any) {
+    if (localStorage.getItem("login")) {
+      if (this.value) {
+        // this.value = weight;
+        this.presentLoading();
+        // document.getElementById("mySelect").value
+        console.log("add item", value.quantity);
+        //https://freshofast.com/wp-json/cocart/v1/add-item
+        localStorage.getItem("username");
+        localStorage.getItem("password");
+        const httpOptions = {
+          headers: new HttpHeaders({
+            "Content-Type": "application/json",
+            Authorization:
+              "Basic " +
+              btoa(
+                `${localStorage.getItem("username")}:${localStorage.getItem(
+                  "password"
+                )}`
+              ),
+          }),
+        };
+        for (var i = 0; i <= value.quantity.length - 1; i++) {
+          if (value.quantity[i].weight == this.value) {
+            const body = {
+              product_id: value.id.toString(),
+              quantity: value.quantity[i].min_qty,
+              variation_id: value.quantity[i].variation_id,
+            };
+            console.log("if condition", value.quantity[i].weight, this.value);
+            this.httpplugin.setDataSerializer("json");
+            this.httpplugin
+              .post(
+                "https://freshofast.com/wp-json/cocart/v1/add-item",
+                //{
+                body,
+                {
+                  Authorization:
+                    "Basic " +
+                    btoa(
+                      `${localStorage.getItem(
+                        "username"
+                      )}:${localStorage.getItem("password")}`
+                    ),
+                  "Content-Type": "application/json",
+                }
+                //}
+              )
+              .then(
+                (data) => {
+                  console.log("success", data);
+                  this.cartdata();
+                  // this.Additem = this.Additem + 1;
+                  // localStorage.setItem("addedItem", this.Additem.toString());
+                  this.addcardtoast();
+                  this.dismiss();
+                },
+                (error) => {
+                  console.log("oops", error);
+                  alert("Out of Stock");
+                  this.dismiss();
+                }
+              );
+          } else {
+            this.dismiss();
+            console.log("else condition", value.quantity[i].weight, this.value);
+          }
         }
-      }
-      this.value = null;
-    } else if (weight) {
-      console.log("else if");
-      this.value = weight;
-      // this.value = weight;
-      this.presentLoading();
-      // document.getElementById("mySelect").value
-      console.log("add item", value.quantity);
-      //https://freshofast.com/wp-json/cocart/v1/add-item
-      localStorage.getItem("username");
-      localStorage.getItem("password");
-      const httpOptions = {
-        headers: new HttpHeaders({
-          "Content-Type": "application/json",
-          Authorization:
-            "Basic " +
-            btoa(
-              `${localStorage.getItem("username")}:${localStorage.getItem(
-                "password"
-              )}`
-            ),
-        }),
-      };
-      for (var i = 0; i <= value.quantity.length - 1; i++) {
-        if (value.quantity[i].weight == this.value) {
-          const body = {
-            product_id: value.id.toString(),
-            quantity: value.quantity[i].min_qty,
-            variation_id: value.quantity[i].variation_id,
-          };
-          console.log("if condition", value.quantity[i].weight, this.value);
-          this.httpplugin.setDataSerializer("json");
-          this.httpplugin
-            .post(
-              "https://freshofast.com/wp-json/cocart/v1/add-item",
-              //{
-              body,
-              {
-                Authorization:
-                  "Basic " +
-                  btoa(
-                    `${localStorage.getItem("username")}:${localStorage.getItem(
-                      "password"
-                    )}`
-                  ),
-                "Content-Type": "application/json",
-              }
-              //}
-            )
-            .then(
-              (data) => {
-                console.log("success", data);
-                this.cartdata();
-                this.addcardtoast();
-                // this.Additem = this.Additem + 1;
-                // localStorage.setItem("addedItem", this.Additem.toString());
-                this.addcardtoast();
-                this.dismiss();
-              },
-              (error) => {
-                console.log("oops", error);
-                alert("Out of Stock");
-                this.dismiss();
-              }
-            );
-        } else {
-          this.dismiss();
-          console.log("else condition", value.quantity[i].weight, this.value);
+        this.value = null;
+      } else if (weight) {
+        console.log("else if");
+        this.value = weight;
+        // this.value = weight;
+        this.presentLoading();
+        // document.getElementById("mySelect").value
+        console.log("add item", value.quantity);
+        //https://freshofast.com/wp-json/cocart/v1/add-item
+        localStorage.getItem("username");
+        localStorage.getItem("password");
+        const httpOptions = {
+          headers: new HttpHeaders({
+            "Content-Type": "application/json",
+            Authorization:
+              "Basic " +
+              btoa(
+                `${localStorage.getItem("username")}:${localStorage.getItem(
+                  "password"
+                )}`
+              ),
+          }),
+        };
+        for (var i = 0; i <= value.quantity.length - 1; i++) {
+          if (value.quantity[i].weight == this.value) {
+            const body = {
+              product_id: value.id.toString(),
+              quantity: value.quantity[i].min_qty,
+              variation_id: value.quantity[i].variation_id,
+            };
+            console.log("if condition", value.quantity[i].weight, this.value);
+            this.httpplugin.setDataSerializer("json");
+            this.httpplugin
+              .post(
+                "https://freshofast.com/wp-json/cocart/v1/add-item",
+                //{
+                body,
+                {
+                  Authorization:
+                    "Basic " +
+                    btoa(
+                      `${localStorage.getItem(
+                        "username"
+                      )}:${localStorage.getItem("password")}`
+                    ),
+                  "Content-Type": "application/json",
+                }
+                //}
+              )
+              .then(
+                (data) => {
+                  console.log("success", data);
+                  this.cartdata();
+                  this.addcardtoast();
+                  // this.Additem = this.Additem + 1;
+                  // localStorage.setItem("addedItem", this.Additem.toString());
+                  this.addcardtoast();
+                  this.dismiss();
+                },
+                (error) => {
+                  console.log("oops", error);
+                  alert("Out of Stock");
+                  this.dismiss();
+                }
+              );
+          } else {
+            this.dismiss();
+            console.log("else condition", value.quantity[i].weight, this.value);
+          }
         }
+        this.value = null;
+      } else {
+        this.dismiss();
+        console.log("else");
+        // alert("Please Select the quantity");
       }
-      this.value = null;
     } else {
-      this.dismiss();
-      console.log("else");
-      // alert("Please Select the quantity");
+      alert("You need to login");
     }
   }
-  quanity(value) {
+  quanity(value: any) {
     this.value = value;
     console.log("valueeee  ", value);
   }
@@ -420,5 +424,12 @@ export class DetailPagePage implements OnInit {
         //this.totalcosting();
         console.log("login data ", response);
       });
+  }
+  opencartpage() {
+    if (localStorage.getItem("login")) {
+      this.route.navigate(["/checkout-page"]);
+    } else {
+      alert("You need to login");
+    }
   }
 }

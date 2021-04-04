@@ -96,6 +96,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "tk/3");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "tyNb");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ "TEn/");
+/* harmony import */ var _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic-native/http/ngx */ "XSEc");
+
 
 
 
@@ -104,8 +106,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let ExoticVegetableListPage = class ExoticVegetableListPage {
-    constructor(http, route, loadingController, alertCtrl, popoverController) {
+    constructor(http, httpplugin, route, loadingController, alertCtrl, popoverController) {
         this.http = http;
+        this.httpplugin = httpplugin;
         this.route = route;
         this.loadingController = loadingController;
         this.alertCtrl = alertCtrl;
@@ -196,13 +199,18 @@ let ExoticVegetableListPage = class ExoticVegetableListPage {
                         variation_id: value.quantity[i].variation_id,
                     };
                     console.log("if condition", value.quantity[i].weight, this.value);
-                    this.http
+                    this.httpplugin.setDataSerializer("json");
+                    this.httpplugin
                         .post("https://freshofast.com/wp-json/cocart/v1/add-item", 
                     //{
-                    body, httpOptions
+                    body, {
+                        Authorization: "Basic " +
+                            btoa(`${localStorage.getItem("username")}:${localStorage.getItem("password")}`),
+                        "Content-Type": "application/json",
+                    }
                     //}
                     )
-                        .subscribe((data) => {
+                        .then((data) => {
                         this.addcardtoast();
                         console.log("success", data);
                         this.cartlist = [];
@@ -245,13 +253,14 @@ let ExoticVegetableListPage = class ExoticVegetableListPage {
                         variation_id: value.quantity[i].variation_id,
                     };
                     console.log("weight if condition", value.quantity[i].weight, this.value);
-                    this.http
+                    this.httpplugin.setDataSerializer("json");
+                    this.httpplugin
                         .post("https://freshofast.com/wp-json/cocart/v1/add-item", 
                     //{
-                    body, httpOptions
+                    body, btoa(`${localStorage.getItem("username")}:${localStorage.getItem("password")}`)
                     //}
                     )
-                        .subscribe((data) => {
+                        .then((data) => {
                         this.addcardtoast();
                         console.log("success", data);
                         this.cartlist = [];
@@ -290,10 +299,14 @@ let ExoticVegetableListPage = class ExoticVegetableListPage {
                     btoa(`${localStorage.getItem("username")}:${localStorage.getItem("password")}`),
             }),
         };
-        this.http
-            .get("https://freshofast.com/wp-json/cocart/v1/get-cart", httpOptions)
-            .subscribe((res) => {
-            var response = res;
+        this.httpplugin
+            .get("https://freshofast.com/wp-json/cocart/v1/get-cart", {}, btoa(`${localStorage.getItem("username")}:${localStorage.getItem("password")}`))
+            .then((res) => {
+            var val = res.data;
+            var b = val.replace(/^\s+/g, "");
+            var c = JSON.parse(b);
+            console.log("resssssss", c);
+            var response = c;
             //this.dismiss();
             // this.cartlist = res;
             for (var propName in response) {
@@ -312,6 +325,7 @@ let ExoticVegetableListPage = class ExoticVegetableListPage {
 };
 ExoticVegetableListPage.ctorParameters = () => [
     { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"] },
+    { type: _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_7__["HTTP"] },
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["LoadingController"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["AlertController"] },

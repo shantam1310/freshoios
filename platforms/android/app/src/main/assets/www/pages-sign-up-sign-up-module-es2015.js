@@ -122,6 +122,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "tk/3");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "tyNb");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ "TEn/");
+/* harmony import */ var _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic-native/http/ngx */ "XSEc");
+
 
 
 
@@ -163,13 +165,17 @@ let SignUpPage = class SignUpPage {
                     roles: "customer",
                 };
                 console.log("form data ", body);
+                this.http.setDataSerializer("json");
                 this.http
                     .post("https://freshofast.com/wp-json/wp/v2/users", 
                 //{
-                body, httpOptions
+                body, {
+                    Authorization: "Basic " + btoa("freshofast:Freshofast@#2020"),
+                    "Content-Type": "application/json",
+                }
                 //}
                 )
-                    .subscribe((data) => {
+                    .then((data) => {
                     console.log("success", data);
                     console.log("sign up data ", data);
                     this.route.navigate(["/login"]);
@@ -232,7 +238,7 @@ let SignUpPage = class SignUpPage {
     }
 };
 SignUpPage.ctorParameters = () => [
-    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"] },
+    { type: _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_7__["HTTP"] },
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["LoadingController"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["PopoverController"] }

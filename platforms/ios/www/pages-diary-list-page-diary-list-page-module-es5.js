@@ -42,7 +42,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-menu-toggle slot=\"start\">\n      <ion-icon\n        name=\"menu-outline\"\n        style=\"font-size: 170%; font-weight: bold; margin-left: 11%\"\n      ></ion-icon>\n    </ion-menu-toggle>\n    <ion-title style=\"font-size: 100%; font-family: revert\"\n      ><ion-img src=\"assets/logo.png\" alt=\"Freshofast\" style=\"width: 59%\">\n      </ion-img\n    ></ion-title>\n    <!-- <ion-buttons slot=\"end\" style=\"margin-right: 2%\">\n      <ion-icon slot=\"end\" name=\"search-outline\"></ion-icon>\n    </ion-buttons> -->\n    <ion-buttons\n      slot=\"end\"\n      style=\"margin-right: 4%\"\n      [routerLink]=\"['/checkout-page']\"\n    >\n      <ion-icon name=\"cart-outline\" style=\"font-size: 144%\"></ion-icon>\n      <span\n        style=\"\n          color: white;\n          background-color: red;\n          border-radius: 23px;\n          padding: 1px;\n          text-align: center;\n        \"\n        >{{cartlist.length}}</span\n      >\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content mode=\"md\">\n  <div\n    style=\"margin-top: 3%; margin-left: 3%; font-size: 101%; font-weight: 600\"\n  >\n    Dairy\n  </div>\n  <!-- <ion-list>\n    <ion-img src=\"assets/cauliflower.png\" style=\"width: 21%;\">\n\n    </ion-img>\n    Cauliflower<span>\n      \n    </span>\n  </ion-list> -->\n  <ion-list>\n    <ion-card *ngFor=\"let list of vegetablelist;let i=index\">\n      <div style=\"width: 40%; float: left\">\n        <ion-img\n          src=\"{{list.images.src}}\"\n          (click)=\"openVegetablaPage(list.id)\"\n        ></ion-img>\n      </div>\n      <div\n        style=\"\n          width: 60%;\n          text-align: center;\n          color: black;\n          float: right;\n          position: relative;\n          margin-top: 5%;\n        \"\n      >\n        {{list.name}}\n        <span\n          ><br />\n          <ion-label\n            *ngIf=\"list.quantity[0].is_in_stock == false\"\n            style=\"color: red\"\n          >\n            Out of stock\n          </ion-label>\n          <ion-select\n            placeholder=\"Select One\"\n            (ionChange)=\"quanity($event.target.value)\"\n            value=\"{{list.quantity[0].weight}}\"\n            style=\"max-width: 100%; color: black\"\n          >\n            <ion-select-option\n              *ngFor=\"let item of list.quantity \"\n              value=\"{{item.weight}}\"\n              >{{item.weight_html}}\n              <p>Rs.{{item.display_price}}</p></ion-select-option\n            >\n          </ion-select>\n        </span>\n      </div>\n      <div style=\"text-align: center\">\n        <ion-button\n          *ngIf=\"list.quantity[0].is_in_stock == true\"\n          style=\"\n            margin-left: 0%;\n            background-color: #60be74;\n            border-radius: 12px;\n            color: black;\n            margin-top: 1em;\n          \"\n          (click)=\"additem(list,i,list.quantity[0].weight)\"\n          ><ion-icon name=\"cart-outline\"></ion-icon> Add to Cart\n        </ion-button>\n        <ion-button\n          *ngIf=\"list.quantity[0].is_in_stock == false\"\n          style=\"\n            margin-left: 0%;\n            background-color: #60be74;\n            border-radius: 12px;\n            color: black;\n            margin-top: 1em;\n          \"\n          ><ion-icon name=\"cart-outline\"></ion-icon> Add to Cart\n        </ion-button>\n      </div></ion-card\n    >\n    <!-- <ion-card>\n      <ion-item>\n        <ion-avatar slot=\"start\">\n          <ion-img src=\"assets/cauliflower.png\"> </ion-img>\n        </ion-avatar>\n        <ion-label>\n          <h2>Cauliflower</h2>\n          <h3>\n            1 per Pack\n            <button style=\"margin-left: 30%; border-radius: 16px\">+</button>\n            <input type=\"number\" style=\"width: 8%; border-radius: 35px\" />\n            <button style=\"border-radius: 16px\">-</button>\n          </h3>\n          <h3>\n            Rs.20.5<button\n              [routerLink]=\"['/checkout-page']\"\n              style=\"\n                margin-left: 35%;\n                background-color: #15ff00d1;\n                border-radius: 12px;\n                color: white;\n              \"\n            >\n              <ion-icon name=\"cart-outline\"></ion-icon>\n              Add to Cart\n            </button>\n          </h3>\n        </ion-label>\n      </ion-item>\n    </ion-card> -->\n  </ion-list>\n</ion-content>\n";
+      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-menu-toggle slot=\"start\">\n      <ion-icon\n        name=\"menu-outline\"\n        style=\"font-size: 170%; font-weight: bold; margin-left: 11%\"\n      ></ion-icon>\n    </ion-menu-toggle>\n    <ion-title style=\"font-size: 100%; font-family: revert\"\n      ><ion-img src=\"assets/logo.png\" alt=\"Freshofast\" style=\"width: 59%\">\n      </ion-img\n    ></ion-title>\n    <!-- <ion-buttons slot=\"end\" style=\"margin-right: 2%\">\n      <ion-icon slot=\"end\" name=\"search-outline\"></ion-icon>\n    </ion-buttons> -->\n    <ion-buttons slot=\"end\" style=\"margin-right: 4%\" (click)=\"opencartpage()\">\n      <ion-icon name=\"cart-outline\" style=\"font-size: 144%\"></ion-icon>\n      <span\n        style=\"\n          color: white;\n          background-color: red;\n          border-radius: 23px;\n          padding: 1px;\n          text-align: center;\n        \"\n        >{{cartlist.length}}</span\n      >\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content mode=\"md\">\n  <div\n    style=\"margin-top: 3%; margin-left: 3%; font-size: 101%; font-weight: 600\"\n  >\n    Dairy\n  </div>\n  <!-- <ion-list>\n    <ion-img src=\"assets/cauliflower.png\" style=\"width: 21%;\">\n\n    </ion-img>\n    Cauliflower<span>\n      \n    </span>\n  </ion-list> -->\n  <ion-list>\n    <ion-card *ngFor=\"let list of vegetablelist;let i=index\">\n      <div style=\"width: 40%; float: left\">\n        <ion-img\n          src=\"{{list.images.src}}\"\n          (click)=\"openVegetablaPage(list.id)\"\n        ></ion-img>\n      </div>\n      <div\n        style=\"\n          width: 60%;\n          text-align: center;\n          color: black;\n          float: right;\n          position: relative;\n          margin-top: 5%;\n        \"\n      >\n        {{list.name}}\n        <span\n          ><br />\n          <ion-label\n            *ngIf=\"list.quantity[0].is_in_stock == false\"\n            style=\"color: red\"\n          >\n            Out of stock\n          </ion-label>\n          <ion-select\n            placeholder=\"Select One\"\n            (ionChange)=\"quanity($event.target.value)\"\n            value=\"{{list.quantity[0].weight}}\"\n            style=\"max-width: 100%; color: black\"\n          >\n            <ion-select-option\n              *ngFor=\"let item of list.quantity \"\n              value=\"{{item.weight}}\"\n              >{{item.weight_html}}\n              <p>Rs.{{item.display_price}}</p></ion-select-option\n            >\n          </ion-select>\n        </span>\n      </div>\n      <div style=\"text-align: center\">\n        <ion-button\n          *ngIf=\"list.quantity[0].is_in_stock == true\"\n          style=\"\n            margin-left: 0%;\n            background-color: #60be74;\n            border-radius: 12px;\n            color: black;\n            margin-top: 1em;\n          \"\n          (click)=\"additem(list,i,list.quantity[0].weight)\"\n          ><ion-icon name=\"cart-outline\"></ion-icon> Add to Cart\n        </ion-button>\n        <ion-button\n          *ngIf=\"list.quantity[0].is_in_stock == false\"\n          style=\"\n            margin-left: 0%;\n            background-color: #60be74;\n            border-radius: 12px;\n            color: black;\n            margin-top: 1em;\n          \"\n          ><ion-icon name=\"cart-outline\"></ion-icon> Add to Cart\n        </ion-button>\n      </div></ion-card\n    >\n    <!-- <ion-card>\n      <ion-item>\n        <ion-avatar slot=\"start\">\n          <ion-img src=\"assets/cauliflower.png\"> </ion-img>\n        </ion-avatar>\n        <ion-label>\n          <h2>Cauliflower</h2>\n          <h3>\n            1 per Pack\n            <button style=\"margin-left: 30%; border-radius: 16px\">+</button>\n            <input type=\"number\" style=\"width: 8%; border-radius: 35px\" />\n            <button style=\"border-radius: 16px\">-</button>\n          </h3>\n          <h3>\n            Rs.20.5<button\n              [routerLink]=\"['/checkout-page']\"\n              style=\"\n                margin-left: 35%;\n                background-color: #15ff00d1;\n                border-radius: 12px;\n                color: white;\n              \"\n            >\n              <ion-icon name=\"cart-outline\"></ion-icon>\n              Add to Cart\n            </button>\n          </h3>\n        </ion-label>\n      </ion-item>\n    </ion-card> -->\n  </ion-list>\n</ion-content>\n";
       /***/
     },
 
@@ -185,8 +185,9 @@
                 var response = res;
                 _this.vegetablelist = response.diaryList;
 
-                _this.cartdata(); //  this.dismiss();
+                _this.cartdata();
 
+                _this.dismiss();
 
                 console.log("api  data ", _this.vegetablelist);
               });
@@ -260,113 +261,126 @@
           value: function additem(value, index, weight) {
             var _this2 = this;
 
-            console.log("weight", weight);
+            if (localStorage.getItem("login")) {
+              console.log("weight", weight);
 
-            if (this.value) {
-              // this.value = weight;
-              this.presentLoading(); // document.getElementById("mySelect").value
+              if (this.value) {
+                // this.value = weight;
+                this.presentLoading(); // document.getElementById("mySelect").value
 
-              console.log("add item", value.quantity); //https://freshofast.com/wp-json/cocart/v1/add-item
+                console.log("add item", value.quantity); //https://freshofast.com/wp-json/cocart/v1/add-item
 
-              localStorage.getItem("username");
-              localStorage.getItem("password");
-              var httpOptions = {
-                headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
-                  "Content-Type": "application/json",
-                  Authorization: "Basic " + btoa("".concat(localStorage.getItem("username"), ":").concat(localStorage.getItem("password")))
-                })
-              };
+                localStorage.getItem("username");
+                localStorage.getItem("password");
+                var httpOptions = {
+                  headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
+                    "Content-Type": "application/json",
+                    Authorization: "Basic " + btoa("".concat(localStorage.getItem("username"), ":").concat(localStorage.getItem("password")))
+                  })
+                };
 
-              for (var i = 0; i <= value.quantity.length - 1; i++) {
-                if (value.quantity[i].weight == this.value) {
-                  var body = {
-                    product_id: value.id.toString(),
-                    quantity: value.quantity[i].min_qty,
-                    variation_id: value.quantity[i].variation_id
-                  };
-                  console.log("if condition", value.quantity[i].weight, this.value);
-                  this.httpplugin.setDataSerializer("json");
-                  this.httpplugin.post("https://freshofast.com/wp-json/cocart/v1/add-item", //{
-                  body, {
-                    Authorization: "Basic " + btoa("".concat(localStorage.getItem("username"), ":").concat(localStorage.getItem("password"))),
-                    "Content-Type": "application/json"
-                  } //}
-                  ).then(function (data) {
-                    _this2.addcardtoast();
+                for (var i = 0; i <= value.quantity.length - 1; i++) {
+                  if (value.quantity[i].weight == this.value) {
+                    var body = {
+                      product_id: value.id.toString(),
+                      quantity: value.quantity[i].min_qty,
+                      variation_id: value.quantity[i].variation_id
+                    };
+                    console.log("if condition", value.quantity[i].weight, this.value);
+                    this.httpplugin.setDataSerializer("json");
+                    this.httpplugin.post("https://freshofast.com/wp-json/cocart/v1/add-item", //{
+                    body, {
+                      Authorization: "Basic " + btoa("".concat(localStorage.getItem("username"), ":").concat(localStorage.getItem("password"))),
+                      "Content-Type": "application/json"
+                    } //}
+                    ).then(function (data) {
+                      _this2.addcardtoast();
 
-                    console.log("success", data);
-                    _this2.cartlist = [];
+                      console.log("success", data);
+                      _this2.cartlist = [];
 
-                    _this2.cartdata(); //this.dismiss();
+                      _this2.cartdata(); //this.dismiss();
 
-                  }, function (error) {
-                    console.log("oops", error);
-                    alert("Out of Stock");
+                    }, function (error) {
+                      console.log("oops", error);
+                      alert("Out of Stock");
 
-                    _this2.dismiss();
-                  });
-                } else {
-                  this.dismiss();
-                  console.log("else condition", value.quantity[i].weight, this.value);
-                }
-              } //this.dismiss();
-
-
-              this.value = null;
-            } else if (weight) {
-              this.value = weight;
-              this.presentLoading(); // document.getElementById("mySelect").value
-
-              console.log("add item", value.quantity); //https://freshofast.com/wp-json/cocart/v1/add-item
-
-              localStorage.getItem("username");
-              localStorage.getItem("password");
-              var _httpOptions = {
-                headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
-                  "Content-Type": "application/json",
-                  Authorization: "Basic " + btoa("".concat(localStorage.getItem("username"), ":").concat(localStorage.getItem("password")))
-                })
-              };
-
-              for (var i = 0; i <= value.quantity.length - 1; i++) {
-                if (value.quantity[i].weight == this.value) {
-                  var _body = {
-                    product_id: value.id.toString(),
-                    quantity: value.quantity[i].min_qty,
-                    variation_id: value.quantity[i].variation_id
-                  };
-                  console.log("weight if condition", value.quantity[i].weight, this.value);
-                  this.httpplugin.setDataSerializer("json");
-                  this.httpplugin.post("https://freshofast.com/wp-json/cocart/v1/add-item", //{
-                  _body, {
-                    Authorization: "Basic " + btoa("".concat(localStorage.getItem("username"), ":").concat(localStorage.getItem("password"))),
-                    "Content-Type": "application/json"
-                  } //}
-                  ).then(function (data) {
-                    _this2.addcardtoast();
-
-                    console.log("success", data);
-                    _this2.cartlist = [];
-
-                    _this2.cartdata(); //this.dismiss();
-
-                  }, function (error) {
-                    console.log("oops", error);
-                    alert("Out of Stock");
-
-                    _this2.dismiss();
-                  });
-                } else {
-                  this.dismiss();
-                  console.log(" weight else condition", value.quantity[i].weight, this.value);
-                }
-              } //this.dismiss();
+                      _this2.dismiss();
+                    });
+                  } else {
+                    this.dismiss();
+                    console.log("else condition", value.quantity[i].weight, this.value);
+                  }
+                } //this.dismiss();
 
 
-              this.value = null;
+                this.value = null;
+              } else if (weight) {
+                this.value = weight;
+                this.presentLoading(); // document.getElementById("mySelect").value
+
+                console.log("add item", value.quantity); //https://freshofast.com/wp-json/cocart/v1/add-item
+
+                localStorage.getItem("username");
+                localStorage.getItem("password");
+                var _httpOptions = {
+                  headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpHeaders"]({
+                    "Content-Type": "application/json",
+                    Authorization: "Basic " + btoa("".concat(localStorage.getItem("username"), ":").concat(localStorage.getItem("password")))
+                  })
+                };
+
+                for (var i = 0; i <= value.quantity.length - 1; i++) {
+                  if (value.quantity[i].weight == this.value) {
+                    var _body = {
+                      product_id: value.id.toString(),
+                      quantity: value.quantity[i].min_qty,
+                      variation_id: value.quantity[i].variation_id
+                    };
+                    console.log("weight if condition", value.quantity[i].weight, this.value);
+                    this.httpplugin.setDataSerializer("json");
+                    this.httpplugin.post("https://freshofast.com/wp-json/cocart/v1/add-item", //{
+                    _body, {
+                      Authorization: "Basic " + btoa("".concat(localStorage.getItem("username"), ":").concat(localStorage.getItem("password"))),
+                      "Content-Type": "application/json"
+                    } //}
+                    ).then(function (data) {
+                      _this2.addcardtoast();
+
+                      console.log("success", data);
+                      _this2.cartlist = [];
+
+                      _this2.cartdata(); //this.dismiss();
+
+                    }, function (error) {
+                      console.log("oops", error);
+                      alert("Out of Stock");
+
+                      _this2.dismiss();
+                    });
+                  } else {
+                    this.dismiss();
+                    console.log(" weight else condition", value.quantity[i].weight, this.value);
+                  }
+                } //this.dismiss();
+
+
+                this.value = null;
+              } else {
+                alert("Please Select the quantity");
+                this.dismiss();
+              }
             } else {
-              alert("Please Select the quantity");
-              this.dismiss();
+              alert("you need to  login");
+            }
+          }
+        }, {
+          key: "opencartpage",
+          value: function opencartpage() {
+            if (localStorage.getItem("login")) {
+              this.route.navigate(["/checkout-page"]);
+            } else {
+              alert("You need to login");
             }
           }
         }, {
